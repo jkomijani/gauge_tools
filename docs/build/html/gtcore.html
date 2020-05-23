@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Main objects &#8212; gauge_tools 0.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Libraries" href="lib.html" />
+    <link rel="prev" title="Examples" href="examples.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="main-objects">
+<h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">Main</span> <span class="pre">objects</span></code><a class="headerlink" href="#main-objects" title="Permalink to this headline">¶</a></h1>
+<dl class="simple">
+<dt>The main objects of this package are defined in two files:</dt><dd><ul class="simple">
+<li><p><cite>gauge_tools/__init__.py</cite> ,</p></li>
+<li><p><cite>gauge_tools/_gtcore.pyx</cite> .</p></li>
+</ul>
+</dd>
+</dl>
+<p>These objects themselves use a set of more basic objects and functions defined
+in <a class="reference internal" href="lib.html#lib"><span class="std std-ref">Libraries</span></a> such as <a class="reference internal" href="lib.html#gauge_tools.lib._matrix.matrix" title="gauge_tools.lib._matrix.matrix"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.lib._matrix.matrix</span></code></a>,
+<a class="reference internal" href="lib.html#gauge_tools.lib._site.site" title="gauge_tools.lib._site.site"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.lib._site.site</span></code></a>, and <a class="reference internal" href="lib.html#gauge_tools.lib._rand.uniform" title="gauge_tools.lib._rand.uniform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.lib._rand.uniform()</span></code></a>.</p>
+<p>Moreover, there are some application available in <a class="reference internal" href="util.html#util"><span class="std std-ref">Utilities</span></a> such as
+<a class="reference internal" href="util.html#gauge_tools.util.smear.smear" title="gauge_tools.util.smear.smear"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.util.smear.smear</span></code></a>, <a class="reference internal" href="util.html#gauge_tools.util.gaugefix.gaugefix" title="gauge_tools.util.gaugefix.gaugefix"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.util.gaugefix.gaugefix</span></code></a>,
+and <a class="reference internal" href="util.html#gauge_tools.util.quark.quark_field" title="gauge_tools.util.quark.quark_field"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.util.quark.quark_field</span></code></a>
+that are useful for various applications.</p>
+<p>The interface of the package with the user is meant to be <a class="reference internal" href="#gauge_tools.lattice" title="gauge_tools.lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.lattice</span></code></a>.
+The commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gauge_tools</span> <span class="k">as</span> <span class="nn">gt</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">gt</span><span class="o">.</span><span class="n">lattice</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>set up all necessary things for a simulation of a <code class="docutils literal notranslate"><span class="pre">8x8x8x8</span></code> lattice.
+Details of simulation, e.g. the choice of <cite>action</cite>, can be controlled through
+optional arguments.
+As one can see in <a class="reference internal" href="#gauge_tools.lattice" title="gauge_tools.lattice"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.lattice</span></code></a>, (most) applications available
+in <a class="reference internal" href="util.html#util"><span class="std std-ref">Utilities</span></a> are already accessible in <code class="docutils literal notranslate"><span class="pre">lat</span></code>.</p>
+<dl class="simple">
+<dt>To start a new simulation or application, depending on the details:</dt><dd><ul class="simple">
+<li><p>use the functions available in <a class="reference internal" href="examples.html#examples"><span class="std std-ref">Examples</span></a>,</p></li>
+<li><p>write new functions similar to those defined in <cite>gauge_tools/examples.py</cite> ,</p></li>
+<li><p>or write new applications similar to those in <cite>gauge_tools/util/</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Below are the main objects of the package.</p>
+<div class="section" id="lattice">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">lattice</span></code><a class="headerlink" href="#lattice" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="gauge_tools.lattice">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.</code><code class="sig-name descname">lattice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nx</span></em>, <em class="sig-param"><span class="n">ny</span></em>, <em class="sig-param"><span class="n">nz</span></em>, <em class="sig-param"><span class="n">nt</span></em>, <em class="sig-param"><span class="n">dim</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">nc</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">action_kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gauge_tools.html#lattice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gauge_tools.lattice" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main object for setting up a lattice.
+An instance of this class is equipped with utilities available in</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.param</span></code>: used to organize the lattice parameters;                    an instance of class <a class="reference internal" href="#gauge_tools.param" title="gauge_tools.param"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.param</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.actn</span></code>:  utilities for defining the action of interest;                    an instance of class <a class="reference internal" href="#gauge_tools.action_util" title="gauge_tools.action_util"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.action_util</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.meas</span></code>:  utilities for computing (measuring) quantities such as Wilson loops;                    an instance of class <a class="reference internal" href="#gauge_tools.measurement_util" title="gauge_tools.measurement_util"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.measurement_util</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.GF</span></code>:    utilities for manipulating gauge fields;                    an instance of class <a class="reference internal" href="#gauge_tools.gauge_field" title="gauge_tools.gauge_field"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.gauge_field</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.MC</span></code>:    utilities for Monte Carlo simulations;                    an instance of class <a class="reference internal" href="#gauge_tools.MC_util" title="gauge_tools.MC_util"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.MC_util</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.quark</span></code>: utilities for calculating quark propagators;                    an instance of class <a class="reference internal" href="util.html#gauge_tools.util.quark.quark_field" title="gauge_tools.util.quark.quark_field"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.util.quark.quark_field</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.smear</span></code>: utilities for smeaing links, such as APE smearing and gradient flow;                    an instance of class <a class="reference internal" href="util.html#gauge_tools.util.smear.smear" title="gauge_tools.util.smear.smear"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.util.smear.smear</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.gaugefix</span></code>: utilities for gauge fixing;                    an instance of class <a class="reference internal" href="util.html#gauge_tools.util.gaugefix.gaugefix" title="gauge_tools.util.gaugefix.gaugefix"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.util.gaugefix.gaugefix</span></code></a>.</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nx,ny,nz,nt</span></code> (<em>all</em> int):  size of lattice in 4 directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dim</span></code>               (int):  number of directions. The default value is 4.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nc</span></code>                (int):  number of colors. The default value is 3.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">**action_kwargs</span></code>:          options for defining an action.                                        If not given, the default sets will be used.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Most applications currently assume <cite>nc=3</cite> and <cite>dim=4</cite>.
+The plan is to enable simulations with <cite>dim&lt;4</cite> and arbitrary <cite>nc</cite>
+in the next versions.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gauge_tools.param">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.</code><code class="sig-name descname">param</code><a class="headerlink" href="#gauge_tools.param" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class to save the parameters of the lattice simulation,
+and also to set the global variables.</p>
+<p>Parameters: <code class="docutils literal notranslate"><span class="pre">nx,</span> <span class="pre">ny,</span> <span class="pre">nz,</span> <span class="pre">nt,</span> <span class="pre">dim,</span> <span class="pre">nc</span></code>, which are the size of
+lattice in <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">z</span></code>, <code class="docutils literal notranslate"><span class="pre">t</span></code> directions, the <code class="docutils literal notranslate"><span class="pre">dimension</span></code>
+and <code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">of</span> <span class="pre">colors</span></code>, respectively.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="gauge-field">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">field</span></code><a class="headerlink" href="#gauge-field" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="gauge_tools.gauge_field">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.</code><code class="sig-name descname">gauge_field</code><a class="headerlink" href="#gauge_tools.gauge_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>A gauge field with a generic action.</p>
+<dl class="py method">
+<dt id="gauge_tools.gauge_field.sweep">
+<code class="sig-name descname">sweep</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">calc_staples</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">n_hits</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">eps_hit</span><span class="o">=</span><span class="default_value">0.24</span></em>, <em class="sig-param"><span class="n">n_su3_samples</span><span class="o">=</span><span class="default_value">100</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.gauge_field.sweep" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main input is a function denoted by <cite>calc_staples</cite> that is used to calulate the relevant part of the action.
+Note that with the Metropolis algorithm used here, we calculate the relevant contribution to the action
+from the link at site <cite>xx</cite> and <cite>mu</cite> direction rather than calculating the total action.
+We organized this as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">-</span> <span class="n">beta</span><span class="o">/</span><span class="n">nc</span><span class="p">)</span> <span class="o">*</span> <span class="n">Re</span> <span class="n">Tr</span> <span class="p">(</span> <span class="n">U_mu</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="n">Gamma_mu</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span> <span class="p">)</span> 
+</pre></div>
+</div>
+<p>where the staples <code class="docutils literal notranslate"><span class="pre">Gamma_mu(xx)</span></code> are common for all hits of the Metropolis update of the link.
+Note that the staples defined here are the adjoint of the conventional staples.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">calc_staples</span></code>: calculates the staples <code class="docutils literal notranslate"><span class="pre">Gamma_mu(xx)</span></code> needed to compute the relevant action.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beta</span></code>:         is the beta of the action.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_hits</span></code>:       number of hits to each link.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eps_hit</span></code>:      the epsilon used in generating SU(n) random matrices.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="monte-carlo">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">Monte</span> <span class="pre">Carlo</span></code><a class="headerlink" href="#monte-carlo" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="gauge_tools.MC_util">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.</code><code class="sig-name descname">MC_util</code><a class="headerlink" href="#gauge_tools.MC_util" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utilities for generating and analyzing configurations from Monte Carlo simulation.</p>
+<dl class="py method">
+<dt id="gauge_tools.MC_util.eval_fn">
+<code class="sig-name descname">eval_fn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fn</span></em>, <em class="sig-param"><span class="n">cfg_list</span></em>, <em class="sig-param"><span class="n">fname_lambda</span></em>, <em class="sig-param"><span class="n">avg_data</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">binsize</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.MC_util.eval_fn" title="Permalink to this definition">¶</a></dt>
+<dd><p>to evaluate <cite>fn</cite> for a list of configurations and calculate the
+Monte Carlo average of <cite>fn</cite>. Note that <cite>fn</cite> can be a list of functions
+that only depend on link varibles; e.g.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">U</span><span class="p">:</span> <span class="p">(</span><span class="n">calc_a_a</span><span class="p">(</span><span class="n">U</span><span class="p">),</span> <span class="n">calc_a_2a</span><span class="p">(</span><span class="n">U</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">calc_a_a</span></code> and <code class="docutils literal notranslate"><span class="pre">calc_a_2a</span></code> are themselves are function of <code class="docutils literal notranslate"><span class="pre">U</span></code>.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fn</span></code>    (function): described above</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cfgs_list</span></code> (list): a list of indices of configurations to be loaded and used for the Monte Carlo averages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fname_lambda</span></code>:     a function to construct a file name to load the configurations                                    such as <code class="docutils literal notranslate"><span class="pre">fname_lambda</span> <span class="pre">=</span> <span class="pre">lambda</span> <span class="pre">ind_cfg:</span> <span class="pre">&quot;cfg_{}&quot;.format(ind_cfg)</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.MC_util.gen_cfgs">
+<code class="sig-name descname">gen_cfgs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_cfgs</span></em>, <em class="sig-param"><span class="n">n_skip</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">'update'</span></em>, <em class="sig-param"><span class="n">load_fname</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">load_ind</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_hits</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">eps_hit</span><span class="o">=</span><span class="default_value">0.24</span></em>, <em class="sig-param"><span class="n">print_parameters</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">save_</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">fname_lambda</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">sweep_kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.MC_util.gen_cfgs" title="Permalink to this definition">¶</a></dt>
+<dd><p>generates new configurations.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_cfgs</span></code> (int):  number of configurations to generate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_skip</span></code> (int):  number of sweeps between two kept configuration.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">mode</span></code> (str):   should be either:</dt><dd><ul>
+<li><p>“from-scratch”:   to start a new set of configurations from scratch,</p></li>
+<li><p>“load&amp;update”:    to load a previously saved configuration and update it,</p></li>
+<li><p>“update”:         to update the present configuration (self.GF.U).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">laod_fname</span></code> (str): if <code class="docutils literal notranslate"><span class="pre">mode==&quot;load&amp;update&quot;</span></code>, the filename of the configuration to be loaded.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">load_ind</span></code> (int):   if <code class="docutils literal notranslate"><span class="pre">mode==&quot;load&amp;update&quot;</span></code>, the index (<cite>sweep_cntr</cite>) associated to</dt><dd><p>the configuration to be loaded.</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_hits</span></code> (int):     number of hits in the Metropolis algorithm</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eps_hits</span></code> (double): the value of <cite>eps</cite> for generating random matrices in the Metropolis algorithm.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">print_parameters</span></code> (boold): if <cite>True</cite>, prints parameters of simulation before startin to simulate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_</span></code> (bool):     if <cite>False</cite>, does not save any configurations (useful for updating the simulation parameters).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fname_lambda</span></code>:     a function to construct a file name to save the configurations                                    such as <code class="docutils literal notranslate"><span class="pre">fname_lambda</span> <span class="pre">=</span> <span class="pre">lambda</span> <span class="pre">ind_cfg:</span> <span class="pre">&quot;cfg_{}&quot;.format(ind_cfg)</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.MC_util.thermalize">
+<code class="sig-name descname">thermalize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_therm</span></em>, <em class="sig-param"><span class="n">update_u0</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">binsize</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.MC_util.thermalize" title="Permalink to this definition">¶</a></dt>
+<dd><p>to thermalize a new ensemble.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_therm</span></code> (int): number of sweeps for thermalization.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_u0</span></code> (bool): if <cite>True`</cite>, updates the tadpole improvement factor <cite>u0</cite> in the process                                of thermalizing. This can be done only if <cite>n_therm&gt;=50</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">binsize</span></code> (int): meaningful only when updating <cite>u0</cite>. Spcefies the number of sweeps between updating                                the value of <cite>u0</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="action">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">action</span></code><a class="headerlink" href="#action" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="gauge_tools.action_util">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.</code><code class="sig-name descname">action_util</code><a class="headerlink" href="#gauge_tools.action_util" title="Permalink to this definition">¶</a></dt>
+<dd><p>For defining the action used in the simulations.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">grid</span></code>   (class):   an instance of <cite>grid_util</cite> class for access to grid utilities.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">action</span></code>  (str):    can be for example <cite>‘W’</cite>, which is the Wilson action, or <cite>‘imp’</cite> for improved actions.                                The default value is <cite>‘W’</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beta</span></code>  (float):    the lattice <cite>beta = 6/g^2/u0**4</cite>, where <cite>g</cite> is the coupling                                and <cite>u0</cite> is the tadpole improvement factor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">u0</span></code>:   (float):    tadpole improvement <cite>u0</cite>; the default value is 1 indicating no improvement.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Note that our definition of <code class="docutils literal notranslate"><span class="pre">beta</span></code> absorbs <code class="docutils literal notranslate"><span class="pre">1/u0^4</span></code>.</p>
+<dl class="py method">
+<dt id="gauge_tools.action_util.set_staples">
+<code class="sig-name descname">set_staples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">u0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.action_util.set_staples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the <cite>staples</cite> needed to calculate the relevant contribution to the action
+corresponding to the link at site xx and mu direction;
+this is organized as Re Tr ( U_mu(xx) Gamma_mu(xx) );
+so we first calculate Gamma_mu(xx), which is common for all hits of the Metropolis update
+of the link, and then we tie U_mu(xx) and Gamma_mu(xx) using <cite>ReTrTie</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="measurement">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">measurement</span></code><a class="headerlink" href="#measurement" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="gauge_tools.measurement_util">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.</code><code class="sig-name descname">measurement_util</code><a class="headerlink" href="#gauge_tools.measurement_util" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt id="gauge_tools.measurement_util.avg_RxT_loops">
+<code class="sig-name descname">avg_RxT_loops</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">R_tuple_list</span></em>, <em class="sig-param"><span class="n">max_T</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.measurement_util.avg_RxT_loops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates renormalized (divided by nc) trace of all Wilson loops in a <cite>RxT</cite> space-time surfase
+where <cite>R_tuple</cite> specifies the spatial path         and <cite>max_T</cite> the temporal duration.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> (nd.array): a link configuration for calculating the <cite>RxT</cite> loops</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">R_tuple_list</span></code> (tuple or list): is either a tuple or a list of tuples.</dt><dd><p>Each tuple has elements specifying a spatial direction and number of steps in that direction.
+For instance <cite>R_tuple = ((0,2),(1,1),(2,0))</cite> means <cite>2,1,0</cite> steps in <cite>x,y,z</cite> directions, respectively.
+When <cite>R_tuple_list</cite> is a list of typles, it means to take an average over all tuples inside the list.
+This is useful for averaging over all spatial rotations of a tuple.</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_T</span></code>: specifies the range for steps in termporal direction.</p></li>
+</ul>
+</dd>
+<dt>Output:</dt><dd><ul class="simple">
+<li><p>an array with <cite>1+max_T</cite> elements each of which corresponds to number of steps in the temporal direction             ranging from <cite>T=0</cite> to <cite>T=max_T</cite>. Note that when <cite>T=0</cite>, the outut is simply one.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.measurement_util.avg_munu_loops">
+<em class="property">static </em><code class="sig-name descname">avg_munu_loops</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">mu</span></em>, <em class="sig-param"><span class="n">nu</span></em>, <em class="sig-param"><span class="n">mu_step</span></em>, <em class="sig-param"><span class="n">nu_step</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.measurement_util.avg_munu_loops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the renormalized (divided by nc) trace of all plananr Wilson loops in <cite>mu-nu</cite> plane
+with given steps in <cite>mu</cite> and <cite>nu</cite> directions and averages over them.</p>
+<p>The <cite>mu-nu</cite> loops are organized according to the following cartoon:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------&lt;--------</span>
+<span class="o">|</span>                <span class="o">|</span>
+<span class="n">v</span>                <span class="o">^</span> <span class="n">nu</span>
+<span class="o">|</span>      <span class="n">mu</span>        <span class="o">|</span>
+<span class="o">@-------&gt;---------</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> is the starting point, which will be summed over all sites of the lattice.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.measurement_util.avg_planar_RxT_loops">
+<code class="sig-name descname">avg_planar_RxT_loops</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">R</span></em>, <em class="sig-param"><span class="n">T</span></em>, <em class="sig-param"><span class="n">temporal_dir</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.measurement_util.avg_planar_RxT_loops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the renormalized trace of  <cite>R times T</cite> planar Wilson loops
+in all sites and space-time planes and averages over them.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.measurement_util.avg_planar_loops">
+<code class="sig-name descname">avg_planar_loops</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">l1</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">l2</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.measurement_util.avg_planar_loops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the renormalized trace of all <cite>l1 times l2</cite> planar Wilson loops
+and averages over them.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.measurement_util.avg_polyakov_loops">
+<em class="property">static </em><code class="sig-name descname">avg_polyakov_loops</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.measurement_util.avg_polyakov_loops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the average of Polyakov lools <cite>&lt;L&gt;</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.measurement_util.calc_path_link">
+<em class="property">static </em><code class="sig-name descname">calc_path_link</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">XX</span></em>, <em class="sig-param"><span class="n">path_tuple</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.measurement_util.calc_path_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates a Wilson line along the path specified by <cite>path_tuple</cite>.
+Each element of <cite>path_tuple</cite> is itself a tuple (or a list) specifying a direction and the number of steps in that direction.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">gauge_tools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Examples</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Main</span> <span class="pre">objects</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lattice"><code class="xref py py-mod docutils literal notranslate"><span class="pre">lattice</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gauge-field"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">field</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#monte-carlo"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Monte</span> <span class="pre">Carlo</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#action"><code class="xref py py-mod docutils literal notranslate"><span class="pre">action</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#measurement"><code class="xref py py-mod docutils literal notranslate"><span class="pre">measurement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Libraries</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utilities</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="examples.html" title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Examples</span></code></a></li>
+      <li>Next: <a href="lib.html" title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Libraries</span></code></a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Javad Komijani.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/gtcore.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

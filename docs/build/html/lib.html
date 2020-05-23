@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Libraries &#8212; gauge_tools 0.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Utilities" href="util.html" />
+    <link rel="prev" title="Main objects" href="gtcore.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="libraries">
+<span id="lib"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">Libraries</span></code><a class="headerlink" href="#libraries" title="Permalink to this headline">¶</a></h1>
+<dl class="simple">
+<dt>Here is the list of available sub-modules:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="#module-gauge_tools.lib._matrix" title="gauge_tools.lib._matrix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge_tools.lib._matrix</span></code></a>:    a library for matrices.</p></li>
+<li><p><a class="reference internal" href="#module-gauge_tools.lib._rand" title="gauge_tools.lib._rand"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge_tools.lib._rand</span></code></a>:      a library for random numbers.</p></li>
+<li><p><a class="reference internal" href="#module-gauge_tools.lib._rand_matrix" title="gauge_tools.lib._rand_matrix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge_tools.lib._rand_matrix</span></code></a>: a library for random matrices.</p></li>
+<li><p><a class="reference internal" href="#module-gauge_tools.lib._site" title="gauge_tools.lib._site"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge_tools.lib._site</span></code></a>:      a library for lattice sites.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="module-gauge_tools.lib._matrix">
+<span id="matrices"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">matrices</span></code><a class="headerlink" href="#module-gauge_tools.lib._matrix" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>This module uses the extension types of Cython to define <code class="docutils literal notranslate"><span class="pre">3x3</span></code>, <code class="docutils literal notranslate"><span class="pre">3x1</span></code>, and <code class="docutils literal notranslate"><span class="pre">1x3</span></code> complex matrices:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="#gauge_tools.lib._matrix.matrix" title="gauge_tools.lib._matrix.matrix"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.lib._matrix.matrix</span></code></a>:   the extension type of <code class="docutils literal notranslate"><span class="pre">3x3</span></code> matrices:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">matrix()</span></code>:             returns an empty matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matrix(zeros=True)</span></code>:   returns a zero matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matrix(identity=True)</span></code>: returns an identity matrix.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#gauge_tools.lib._matrix.vector" title="gauge_tools.lib._matrix.vector"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.lib._matrix.vector</span></code></a>:   the extension type of <code class="docutils literal notranslate"><span class="pre">3x1</span></code> matrices or (column) vectors:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">vector()</span></code>:             returns an empty column vector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vector(zeros=True)</span></code>:   returns a zero column vector.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#gauge_tools.lib._matrix.rowvector" title="gauge_tools.lib._matrix.rowvector"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.lib._matrix.rowvector</span></code></a>:  the extension type of <code class="docutils literal notranslate"><span class="pre">1x3</span></code> matrices or row vectors:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">rowvector()</span></code>:             returns an empty row vector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rowvector(zeros=True)</span></code>:   returns a zero row vector.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Operators <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, and <code class="docutils literal notranslate"><span class="pre">*=</span></code> are supported for objects of the same type.
+The operator <code class="docutils literal notranslate"><span class="pre">/</span></code> is supported only for division by numbers.
+The operator <code class="docutils literal notranslate"><span class="pre">*</span></code> is also supported between instances of different classes and numbers in the framework of linear algebra.
+For instance, if <code class="docutils literal notranslate"><span class="pre">m1</span></code> and <code class="docutils literal notranslate"><span class="pre">m2</span></code> are two matrices and <code class="docutils literal notranslate"><span class="pre">v</span></code> is a vector, one can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">v</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">m1</span> <span class="o">-</span> <span class="n">m2</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span>
+</pre></div>
+</div>
+<p>to change the value of <code class="docutils literal notranslate"><span class="pre">v</span></code>.</p>
+<dl class="py function">
+<dt id="gauge_tools.lib._matrix.Adj">
+<code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">Adj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.Adj" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the adjoint of the matrix.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._matrix.ImTr">
+<code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">ImTr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.ImTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the imaginary part of <code class="docutils literal notranslate"><span class="pre">Tr(</span> <span class="pre">matrix</span> <span class="pre">)</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._matrix.ReTr">
+<code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">ReTr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.ReTr" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the real part of <code class="docutils literal notranslate"><span class="pre">Tr(</span> <span class="pre">matrix</span> <span class="pre">)</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._matrix.ReTrTie">
+<code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">ReTrTie</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.ReTrTie" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the real part of <code class="docutils literal notranslate"><span class="pre">Tr(</span> <span class="pre">matrix1</span> <span class="pre">*</span> <span class="pre">matrix2</span> <span class="pre">)</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._matrix.Tr">
+<code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">Tr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.Tr" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns <code class="docutils literal notranslate"><span class="pre">Tr(</span> <span class="pre">matrix</span> <span class="pre">)</span></code> .</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._matrix.asmatrix">
+<code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">asmatrix</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.asmatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>converts an array-like object (such as a list, np.ndarray, and np.matrix type objects) to a matrix.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._matrix.identity">
+<code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">identity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a <code class="docutils literal notranslate"><span class="pre">nxn</span></code> identity matrix, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the argument of the function.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._matrix.matexp">
+<code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">matexp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matexp" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the exponential of the input matrix obtained by the Taylor expansion.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._matrix.matexp_special">
+<code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">matexp_special</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matexp_special" title="Permalink to this definition">¶</a></dt>
+<dd><p>[Note: <strong>*Works only if the eigenvalues of the input are  different*</strong>]
+returns the exponential of the 3x3 input matrix by taking advantage of the Cayley–Hamilton theorem
+stating that every square matrix satisfies its own characteristic equation.
+For a 3x3 matrix <code class="docutils literal notranslate"><span class="pre">M</span></code>, this theorem indicates that:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span><span class="p">(</span><span class="n">M</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span> <span class="n">I</span> <span class="o">+</span> <span class="n">b</span> <span class="n">M</span> <span class="o">+</span> <span class="n">c</span> <span class="n">M</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">I</span></code> is the identity matrix and <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, and <code class="docutils literal notranslate"><span class="pre">c</span></code> are three numbers that can be
+calculated using the eigenvalues of M, which satisfy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">exp</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="n">s</span> <span class="o">+</span> <span class="n">c</span> <span class="n">s</span><span class="o">^</span><span class="mi">2</span>
+</pre></div>
+</div>
+<p>Thus:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span><span class="n">a</span><span class="o">|</span>         <span class="o">|</span><span class="mi">1</span>  <span class="n">s1</span>  <span class="n">s1</span><span class="o">^</span><span class="mi">2</span><span class="o">|</span>   <span class="o">|</span><span class="n">exp</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span><span class="o">|</span>
+<span class="o">|</span><span class="n">b</span><span class="o">|</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span>  <span class="o">|</span><span class="mi">1</span>  <span class="n">s2</span>  <span class="n">s2</span><span class="o">^</span><span class="mi">2</span><span class="o">|</span> <span class="p">)</span> <span class="o">|</span><span class="n">exp</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span><span class="o">|</span>
+<span class="o">|</span><span class="n">c</span><span class="o">|</span>         <span class="o">|</span><span class="mi">1</span>  <span class="n">s3</span>  <span class="n">s3</span><span class="o">^</span><span class="mi">2</span><span class="o">|</span>   <span class="o">|</span><span class="n">exp</span><span class="p">(</span><span class="n">s3</span><span class="p">)</span><span class="o">|</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gauge_tools.lib._matrix.matrix">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">matrix</code><a class="headerlink" href="#gauge_tools.lib._matrix.matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a Cython extension type to declare and define <code class="docutils literal notranslate"><span class="pre">3x3</span></code> complex matrices.
+After importing <code class="docutils literal notranslate"><span class="pre">matrix</span></code> from <a class="reference internal" href="#module-gauge_tools.lib._matrix" title="gauge_tools.lib._matrix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge_tools.lib._matrix</span></code></a>, one can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">matrix</span><span class="p">()</span>
+<span class="n">matrix</span><span class="p">(</span><span class="n">zeros</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">matrix</span><span class="p">(</span><span class="n">identity</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to define an empty, zero, and identity matrices, respectively.</p>
+<dl>
+<dt>This extension type is equipped with several special methods such as:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">__add__(matrix</span> <span class="pre">x,</span> <span class="pre">matrix</span> <span class="pre">y)</span></code> supports instances of matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__sub__(matrix</span> <span class="pre">x,</span> <span class="pre">matrix</span> <span class="pre">y)</span></code> supports instances of matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__mul__(x,</span> <span class="pre">y)</span></code>   supports instances of matrix and numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__truediv__(matrix</span> <span class="pre">x,</span> <span class="pre">y)</span></code>  supports numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__iadd__(self,</span> <span class="pre">matrix</span> <span class="pre">y)</span></code>  supports instances of matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__isub__(self,</span> <span class="pre">matrix</span> <span class="pre">y)</span></code>  supports instances of matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__imul__(self,</span> <span class="pre">y)</span></code> supports instances of matrix and numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__itruediv__(self,</span> <span class="pre">y)</span></code> supproted for numbers.</p></li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">__getitem__(self,</span> <span class="pre">ij)</span></code> to get item(s).            For a matrix <cite>m</cite></dt><dd><blockquote>
+<div><ul class="simple">
+<li><p>to get the <cite>(i,j)</cite> element, write <cite>m[i,j]</cite>.</p></li>
+<li><p>to get the <cite>i</cite> row , write <cite>m[i]</cite> or <cite>m[i,:]</cite>; this returns a row vector type object.</p></li>
+<li><p>to get the <cite>j</cite> column , write <cite>m[:,j]</cite>; this returns a (column) vector type object.</p></li>
+<li><p>to get a copy of the whole matrix, write <cite>m[:,:]</cite>.</p></li>
+</ul>
+</div></blockquote>
+<p>In contrary to the numpy convention, only positive indices are supported.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt><code class="docutils literal notranslate"><span class="pre">__setitem__(self,</span> <span class="pre">ij,</span> <span class="pre">y)</span></code> to set item(s).            For a matrix <cite>m</cite></dt><dd><blockquote>
+<div><ul class="simple">
+<li><p>to set the <cite>(i,j)</cite> element, write <cite>m[i,j] = s</cite>.</p></li>
+<li><p>to set the <cite>i</cite> row , write <cite>m[i] = v</cite> or <cite>m[i,:] = v</cite>, where <cite>v</cite> is a row vector type object.</p></li>
+<li><p>to set the <cite>j</cite> column , write <cite>m[:,j] = v</cite>, where <cite>v</cite> is a (column) vector type object.</p></li>
+</ul>
+</div></blockquote>
+<p>In contrary to the numpy convention, only positive indices are supported.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>In addition to these special methods, there are more methods and properties listed below.</p>
+<dl class="py attribute">
+<dt id="gauge_tools.lib._matrix.matrix.H">
+<code class="sig-name descname">H</code><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.H" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the adjoint matrix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.anti_hermitian_traceless">
+<code class="sig-name descname">anti_hermitian_traceless</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.anti_hermitian_traceless" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the anti hermitian, traceless part of the matrix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.asarray">
+<code class="sig-name descname">asarray</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.asarray" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the matrix as numpy.ndarray.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.det">
+<code class="sig-name descname">det</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.det" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the determinant of the matrix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.eig">
+<code class="sig-name descname">eig</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.eig" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the eigenvalues of the matrix as a vector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.insert">
+<code class="sig-name descname">insert</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>can be used to insert the content of another matrix or a numpy.ndarray.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.inv">
+<code class="sig-name descname">inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the inverse of the matrix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.naive_unitarize">
+<code class="sig-name descname">naive_unitarize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.naive_unitarize" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a naive (special) unitarized version of the matrix, which is obtained by
+orthonormalizing the rows of the matrix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.norm">
+<code class="sig-name descname">norm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the norm of the matrix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.norm_sq">
+<code class="sig-name descname">norm_sq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.norm_sq" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the norm-squared of the matrix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.project_SU3">
+<code class="sig-name descname">project_SU3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.project_SU3" title="Permalink to this definition">¶</a></dt>
+<dd><p>projects the current <code class="docutils literal notranslate"><span class="pre">3x3</span></code> complex matrix <code class="docutils literal notranslate"><span class="pre">Q</span></code> onto SU(3) matrix <code class="docutils literal notranslate"><span class="pre">W</span></code>
+by maximizing <code class="docutils literal notranslate"><span class="pre">Re</span> <span class="pre">Tr</span> <span class="pre">(Q^\dagger</span> <span class="pre">W)</span></code>.</p>
+<p>This code is developed following <cite>project_su3_hit.c</cite> in the <a class="reference external" href="http://physics.utah.edu/~detar/milc.html">MILC code</a>,
+which uses an iterative method based on hits in the various diagonal SU(2) subgroups.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">n_hits</span></code>: number of SU(3) hits. The default value is 10, which is typically good to                          reach to a precision with about 15 digits if the matrix is close to a unitary matrix.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tol</span></code>:    tolerance for SU(3) projection. If nonzero, treat <cite>n_hits</cite> as a maximum number of hits.                          If zero, treat <cite>n_hits</cite> as a prescribed number of hits. The default value is 1e-6.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="gauge_tools.lib._matrix.matrix.shape">
+<code class="sig-name descname">shape</code><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the shape of the matrix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.trace">
+<code class="sig-name descname">trace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the trace of the matrix.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.matrix.traceless">
+<code class="sig-name descname">traceless</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.matrix.traceless" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the traceless part of the matrix.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._matrix.ones">
+<code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">ones</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.ones" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a <code class="docutils literal notranslate"><span class="pre">nr</span> <span class="pre">x</span> <span class="pre">nc</span></code> one matrix, where <code class="docutils literal notranslate"><span class="pre">nr</span></code> and <code class="docutils literal notranslate"><span class="pre">nc</span></code> are the arguments of the function.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gauge_tools.lib._matrix.rowvector">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">rowvector</code><a class="headerlink" href="#gauge_tools.lib._matrix.rowvector" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a Cython extension type to declare and define <code class="docutils literal notranslate"><span class="pre">1x3</span></code> complex matrices,
+or complex row vectors:
+After importing <code class="docutils literal notranslate"><span class="pre">rowvector</span></code> from <a class="reference internal" href="#module-gauge_tools.lib._matrix" title="gauge_tools.lib._matrix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge_tools.lib._matrix</span></code></a>, one can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rowvector</span><span class="p">()</span>
+<span class="n">rowvector</span><span class="p">(</span><span class="n">zeros</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to define an empty and zero row vectors, respectively.</p>
+<dl class="simple">
+<dt>This extension type is equipped with several special methods:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__add__(rowvector</span> <span class="pre">x,</span> <span class="pre">rowvector</span> <span class="pre">y)</span></code>  supports instances of rowvector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__sub__(rowvector</span> <span class="pre">x,</span> <span class="pre">rowvector</span> <span class="pre">y)</span></code>  supports instances of rowvector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__mul__(x,</span> <span class="pre">y)</span></code>  supports instances of matrix, vector, and numbers as in linear algebra.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__truediv__(rowvector</span> <span class="pre">x,</span> <span class="pre">y)</span></code> supports numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__iadd__(self,</span> <span class="pre">rowvector</span> <span class="pre">y)</span></code> supports instances of rowvector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__isub__(self,</span> <span class="pre">rowvector</span> <span class="pre">y)</span></code> supports instances of rowvector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__imul__(self,</span> <span class="pre">y)</span></code>         supports numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__itruediv__(self,</span> <span class="pre">y)</span></code>     supports numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__getitem__(self,</span> <span class="pre">int</span> <span class="pre">i)</span></code>  to get an item.                    To get the <cite>i</cite> th element of rowvector <cite>v</cite>, write <cite>v[i]</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__setitem__(self,</span> <span class="pre">int</span> <span class="pre">i,</span> <span class="pre">y)</span></code> to set an item.                    To set the <cite>i</cite> th element of rowvector <cite>v</cite>, write <cite>v[i] = y</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>In addition to these special methods, there are more methods and properties listed below.</p>
+<dl class="py attribute">
+<dt id="gauge_tools.lib._matrix.rowvector.H">
+<code class="sig-name descname">H</code><a class="headerlink" href="#gauge_tools.lib._matrix.rowvector.H" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the adjoint of the vector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.rowvector.conjugate">
+<code class="sig-name descname">conjugate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.rowvector.conjugate" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the conjugate of the row vector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.rowvector.cross">
+<code class="sig-name descname">cross</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.rowvector.cross" title="Permalink to this definition">¶</a></dt>
+<dd><p>(for two row vectors) <cite>v1.cross(v2)</cite> returns the cross product of them.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.rowvector.insert">
+<code class="sig-name descname">insert</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.rowvector.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>can be used to insert the content of another row vector (or a numpy.ndarray) in this instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.rowvector.norm">
+<code class="sig-name descname">norm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.rowvector.norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the norm of the row vector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.rowvector.norm_sq">
+<code class="sig-name descname">norm_sq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.rowvector.norm_sq" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the norm-square of the row vector.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="gauge_tools.lib._matrix.rowvector.shape">
+<code class="sig-name descname">shape</code><a class="headerlink" href="#gauge_tools.lib._matrix.rowvector.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the shape of the vector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.rowvector.vdot">
+<code class="sig-name descname">vdot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.rowvector.vdot" title="Permalink to this definition">¶</a></dt>
+<dd><p>(for two row vectors) <cite>v1.vdot(v2)</cite> returns <cite>v1 * v2.H</cite>;
+this is equivalent to <cite>np.vdot(v2,v1)</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="gauge_tools.lib._matrix.vector">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">vector</code><a class="headerlink" href="#gauge_tools.lib._matrix.vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a Cython extension type to declare and define <code class="docutils literal notranslate"><span class="pre">3x1</span></code> complex matrices,
+or complex (column) vectors.
+After importing <code class="docutils literal notranslate"><span class="pre">vector</span></code> from <a class="reference internal" href="#module-gauge_tools.lib._matrix" title="gauge_tools.lib._matrix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge_tools.lib._matrix</span></code></a>, one can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="p">()</span>
+<span class="n">vector</span><span class="p">(</span><span class="n">zeros</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to define an empty and zero (column) vectors, respectively.</p>
+<dl class="simple">
+<dt>This extension type is equipped with several special methods:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__add__(vector</span> <span class="pre">x,</span> <span class="pre">vector</span> <span class="pre">y)</span></code>  supports instances of vector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__sub__(vector</span> <span class="pre">x,</span> <span class="pre">vector</span> <span class="pre">y)</span></code>  supports instances of vector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__mul__(x,</span> <span class="pre">y)</span></code>  supports instances of matrix, rowvector, and numbers as in linear algebra.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__truediv__(vector</span> <span class="pre">x,</span> <span class="pre">y)</span></code>  supports numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__iadd__(self,</span> <span class="pre">vector</span> <span class="pre">y)</span></code>  supports instances of vector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__isub__(self,</span> <span class="pre">vector</span> <span class="pre">y)</span></code>  supports instances of vector.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__imul__(self,</span> <span class="pre">y)</span></code>         supports numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__itruediv__(self,</span> <span class="pre">y)</span></code>     supports numbers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__getitem__(self,</span> <span class="pre">int</span> <span class="pre">i)</span></code>  to get an item.                        To get the <cite>i</cite> th element of vector <cite>v</cite>, write <cite>v[i]</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__setitem__(self,</span> <span class="pre">int</span> <span class="pre">i,</span> <span class="pre">y)</span></code>   to set an item.                        To set the <cite>i</cite> th element of vector <cite>v</cite>, write <cite>v[i] = y</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>In addition to these special methods, there are more methods and properties listed below.</p>
+<dl class="py attribute">
+<dt id="gauge_tools.lib._matrix.vector.H">
+<code class="sig-name descname">H</code><a class="headerlink" href="#gauge_tools.lib._matrix.vector.H" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the adjoint vector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.vector.asarray">
+<code class="sig-name descname">asarray</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.vector.asarray" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the vector as numpy.ndarray.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.vector.aslist">
+<code class="sig-name descname">aslist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.vector.aslist" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the vector as a list.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.vector.conjugate">
+<code class="sig-name descname">conjugate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.vector.conjugate" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the conjugate of the vector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.vector.cross">
+<code class="sig-name descname">cross</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.vector.cross" title="Permalink to this definition">¶</a></dt>
+<dd><p>(for two vectors) <cite>v1.cross(v2)</cite> returns the cross product of them.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.vector.insert">
+<code class="sig-name descname">insert</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.vector.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>can be used to insert the content of another vector (or a numpy.ndarray) in this instance.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.vector.norm">
+<code class="sig-name descname">norm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.vector.norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the norm of the vector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.vector.norm_sq">
+<code class="sig-name descname">norm_sq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.vector.norm_sq" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the norm-square of the vector.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="gauge_tools.lib._matrix.vector.shape">
+<code class="sig-name descname">shape</code><a class="headerlink" href="#gauge_tools.lib._matrix.vector.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns the shape of the vector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._matrix.vector.vdot">
+<code class="sig-name descname">vdot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.vector.vdot" title="Permalink to this definition">¶</a></dt>
+<dd><p>(for two vectors) <cite>v1.vdot(v2)</cite> returns <cite>v1.H * v2</cite>;
+this is equivalent to <cite>np.vdot(v1,v2)</cite>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._matrix.zeros">
+<code class="sig-prename descclassname">gauge_tools.lib._matrix.</code><code class="sig-name descname">zeros</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._matrix.zeros" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a <code class="docutils literal notranslate"><span class="pre">nr</span> <span class="pre">x</span> <span class="pre">nc</span></code> zero matrix, where <code class="docutils literal notranslate"><span class="pre">nr</span></code> and <code class="docutils literal notranslate"><span class="pre">nc</span></code> are the arguments of the function.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-gauge_tools.lib._rand">
+<span id="random-numbers"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span> <span class="pre">numbers</span></code><a class="headerlink" href="#module-gauge_tools.lib._rand" title="Permalink to this headline">¶</a></h2>
+<p>This module is developed using the Mersenne Twister method with improved initialization downloaded from <a class="reference external" href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/MT2002/emt19937ar.html">mt19937ar</a>,
+which by the way is used in the <cite>random</cite> package of python as described in <a class="reference external" href="https://github.com/python/cpython/blob/master/Modules/_randommodule.c">randommodule</a>.</p>
+<dl class="simple">
+<dt>The main functions in this module are:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="#gauge_tools.lib._rand.seed" title="gauge_tools.lib._rand.seed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.lib._rand.seed()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.lib._rand.rand" title="gauge_tools.lib._rand.rand"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.lib._rand.rand()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.lib._rand.uniform" title="gauge_tools.lib._rand.uniform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.lib._rand.uniform()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.lib._rand.randrange" title="gauge_tools.lib._rand.randrange"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.lib._rand.randrange()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.lib._rand.normal" title="gauge_tools.lib._rand.normal"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.lib._rand.normal()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.lib._rand.complex_normal" title="gauge_tools.lib._rand.complex_normal"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.lib._rand.complex_normal()</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt id="gauge_tools.lib._rand.complex_normal">
+<code class="sig-prename descclassname">gauge_tools.lib._rand.</code><code class="sig-name descname">complex_normal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._rand.complex_normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>A complex number with real and imaginary parts that are independent random variables with
+normal distribution <cite>N(0,1/sqrt(2))</cite> so that the expectation value of the power of the complex number is 1.
+This function uses the Marsaglia polar method. See also <cite>gaussrand.c</cite> in the <a class="reference external" href="http://physics.utah.edu/~detar/milc.html">MILC code</a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._rand.normal">
+<code class="sig-prename descclassname">gauge_tools.lib._rand.</code><code class="sig-name descname">normal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._rand.normal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Normal distribution <cite>N(0,1)</cite> using the Marsaglia polar method.
+See also <cite>gaussrand.c</cite> in the <a class="reference external" href="http://physics.utah.edu/~detar/milc.html">MILC code</a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._rand.rand">
+<code class="sig-prename descclassname">gauge_tools.lib._rand.</code><code class="sig-name descname">rand</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._rand.rand" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a (double) random number on <cite>[0,1)</cite> or <cite>[0,1]</cite> with 53-bit resolution.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._rand.randrange">
+<code class="sig-prename descclassname">gauge_tools.lib._rand.</code><code class="sig-name descname">randrange</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._rand.randrange" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an integer uniformly chosen from range(n).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._rand.seed">
+<code class="sig-prename descclassname">gauge_tools.lib._rand.</code><code class="sig-name descname">seed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._rand.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>To set the seed for the random number generator.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">seed</span></code>: (int or “time”): the default value is <cite>seed=”time”</cite>,                    which sets the seed to the current time as a random number.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._rand.uniform">
+<code class="sig-prename descclassname">gauge_tools.lib._rand.</code><code class="sig-name descname">uniform</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._rand.uniform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a (double) random number on <cite>[x,y)</cite> or <cite>[x,y]</cite> with 53-bit resolution,
+where <cite>x</cite> an <cite>y</cite> are the arguments of the function.
+Keep in mind that it would be marginally faster to use <cite>uniform(-1.,1.)</cite> than <cite>uniform(-1,1)</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-gauge_tools.lib._rand_matrix">
+<span id="random-matrices"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span> <span class="pre">matrices</span></code><a class="headerlink" href="#module-gauge_tools.lib._rand_matrix" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="gauge_tools.lib._rand_matrix.random_special_unitary">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.lib._rand_matrix.</code><code class="sig-name descname">random_special_unitary</code><a class="headerlink" href="#gauge_tools.lib._rand_matrix.random_special_unitary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class of <code class="docutils literal notranslate"><span class="pre">SU(n)</span></code> random matrices.
+Create an instance by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sun</span> <span class="o">=</span> <span class="n">gauge_tools</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">_rand_matrix</span><span class="o">.</span><span class="n">random_special_unitary</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>Then calling the method <cite>random_clost_to_unity()</cite> one can generate random <code class="docutils literal notranslate"><span class="pre">SU(n)</span></code> matrices close to unity.
+If needed one can multiply several such matrices to get a random matrix not necessarily close to unity.
+The implementation of the matrices is by default with numpy arrays for any values of <code class="docutils literal notranslate"><span class="pre">n</span></code>.
+In case <code class="docutils literal notranslate"><span class="pre">n=3</span></code>, one can</p>
+<blockquote>
+<div><p>sun = gauge_tools.lib._rand_matrix.random_special_unitary(n, ndarray=False)</p>
+</div></blockquote>
+<p>for implimentation by :class:<code class="docutils literal notranslate"><span class="pre">gauge_tools.lib._matrix.matrix</span></code> matrices as used in the gauge_tools package.</p>
+<dl class="py method">
+<dt id="gauge_tools.lib._rand_matrix.random_special_unitary.gen_samples">
+<code class="sig-name descname">gen_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">eps</span></em>, <em class="sig-param"><span class="n">n_samples</span><span class="o">=</span><span class="default_value">100</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._rand_matrix.random_special_unitary.gen_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a list of <cite>n_samples</cite> of random matrices close to unity.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eps</span></code>       (float):  a number indicating how much close the random matrix is to unity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_samples</span></code> (int):    number of samples to be generated.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._rand_matrix.random_special_unitary.random_close_to_unity">
+<code class="sig-name descname">random_close_to_unity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">eps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._rand_matrix.random_special_unitary.random_close_to_unity" title="Permalink to this definition">¶</a></dt>
+<dd><p>generates a SU(n) random matrix close to unity.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.lib._rand_matrix.random_special_unitary.random_hermitian">
+<code class="sig-name descname">random_hermitian</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._rand_matrix.random_special_unitary.random_hermitian" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate a random traceless hermition matrix with the (generalized) Gell-Mann matrices
+and coefficients uniformly chosen between -1 and 1.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-gauge_tools.lib._site">
+<span id="sites"></span><h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">sites</span></code><a class="headerlink" href="#module-gauge_tools.lib._site" title="Permalink to this headline">¶</a></h2>
+<p>This module uses the extension types of Cython to define <a class="reference internal" href="#gauge_tools.lib._site.site" title="gauge_tools.lib._site.site"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.lib._site.site</span></code></a>,
+which is a class of objects refering to lattice sites.
+After importing site from <a class="reference internal" href="#module-gauge_tools.lib._site" title="gauge_tools.lib._site"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge_tools.lib._site</span></code></a>, one can use</p>
+<blockquote>
+<div><p>XX = site(x0, x1, x2, x3)</p>
+</div></blockquote>
+<p>to define XX as a site referring to the point <code class="docutils literal notranslate"><span class="pre">[x0,x1,x2,x3]</span></code> on the lattice.</p>
+<p>Operators <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">+=</span></code>, and <code class="docutils literal notranslate"><span class="pre">-=</span></code> are defined to shift the site to specifc directions.
+For <code class="docutils literal notranslate"><span class="pre">mu,</span> <span class="pre">nu</span> <span class="pre">\in</span> <span class="pre">[0,1,2,3]</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">XX</span> <span class="o">+=</span> <span class="n">mu</span>
+<span class="n">XX</span> <span class="o">-=</span> <span class="n">nu</span>
+</pre></div>
+</div>
+<p>shifts the site <code class="docutils literal notranslate"><span class="pre">XX</span></code> by one step in the <code class="docutils literal notranslate"><span class="pre">mu</span></code> direction and by one step in the opposite of <code class="docutils literal notranslate"><span class="pre">nu</span></code> direction.
+One can also define:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">YY</span> <span class="o">=</span> <span class="n">XX</span> <span class="o">+</span> <span class="n">mu</span>
+<span class="n">YY</span> <span class="o">=</span> <span class="n">XX</span> <span class="o">-</span> <span class="n">mu</span>
+<span class="n">YY</span> <span class="o">=</span> <span class="n">XX</span> <span class="o">+</span> <span class="n">mu</span> <span class="o">-</span> <span class="n">nu</span>
+</pre></div>
+</div>
+<p>where the last line means that <code class="docutils literal notranslate"><span class="pre">YY</span></code> is a site obtained by shifting the site <code class="docutils literal notranslate"><span class="pre">XX</span></code> by one step
+in the <code class="docutils literal notranslate"><span class="pre">mu</span></code> direction and by one step in the opposite of <code class="docutils literal notranslate"><span class="pre">nu</span></code> direction.</p>
+<p><strong>*NOTE*</strong> The <code class="docutils literal notranslate"><span class="pre">+</span></code> and <code class="docutils literal notranslate"><span class="pre">-</span></code> operators defined here are not commutative: the direction
+<code class="docutils literal notranslate"><span class="pre">mu</span></code> must always come on the right hand side of the operator.</p>
+<dl class="py function">
+<dt id="gauge_tools.lib._site.link_index">
+<code class="sig-prename descclassname">gauge_tools.lib._site.</code><code class="sig-name descname">link_index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._site.link_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>similar to <a class="reference internal" href="#gauge_tools.lib._site.link_index_" title="gauge_tools.lib._site.link_index_"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.lib._site.link_index_()</span></code></a>
+except that a lattice site is specified by an instance of <a class="reference internal" href="#gauge_tools.lib._site.site" title="gauge_tools.lib._site.site"><code class="xref py py-class docutils literal notranslate"><span class="pre">gauge_tools.lib._site.site</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="gauge_tools.lib._site.link_index_">
+<code class="sig-prename descclassname">gauge_tools.lib._site.</code><code class="sig-name descname">link_index_</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.lib._site.link_index_" title="Permalink to this definition">¶</a></dt>
+<dd><p>maps the point (x0,x1,x2,x3,mu) to a unique integer index. Indices must not be negative.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="gauge_tools.lib._site.site">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.lib._site.</code><code class="sig-name descname">site</code><a class="headerlink" href="#gauge_tools.lib._site.site" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a Cython extension type to declare and define lattice sites.
+After importing <code class="docutils literal notranslate"><span class="pre">site</span></code> from <a class="reference internal" href="#module-gauge_tools.lib._site" title="gauge_tools.lib._site"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge_tools.lib._site</span></code></a>, one can use</p>
+<blockquote>
+<div><p>XX = site(x0, x1, x2, x3)</p>
+</div></blockquote>
+<p>to define XX as a site referring to the point <code class="docutils literal notranslate"><span class="pre">[x0,x1,x2,x3]</span></code> on the lattice.</p>
+<p>This extension type is equipped with several special methods:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__add__(site</span> <span class="pre">XX,</span> <span class="pre">int</span> <span class="pre">mu)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__sub__(site</span> <span class="pre">XX,</span> <span class="pre">int</span> <span class="pre">mu)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__iadd__(self,</span> <span class="pre">int</span> <span class="pre">mu)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__isub__(self,</span> <span class="pre">int</span> <span class="pre">mu)</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>where <code class="docutils literal notranslate"><span class="pre">mu</span> <span class="pre">\in</span> <span class="pre">[0,1,2,3]</span></code></p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">gauge_tools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Examples</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtcore.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Main</span> <span class="pre">objects</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Libraries</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-gauge_tools.lib._matrix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matrices</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gauge_tools.lib._rand"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span> <span class="pre">numbers</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gauge_tools.lib._rand_matrix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">random</span> <span class="pre">matrices</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-gauge_tools.lib._site"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sites</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="util.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utilities</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="gtcore.html" title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Main</span> <span class="pre">objects</span></code></a></li>
+      <li>Next: <a href="util.html" title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utilities</span></code></a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Javad Komijani.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/lib.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

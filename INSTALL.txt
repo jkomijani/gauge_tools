@@ -1,0 +1,8 @@
+To install:
+   pip3 install . --user
+
+To uninstall:
+   pip3 uninstall gauge_tools
+
+For inplace installation use:
+   python3 setup.py build_ext --inplace

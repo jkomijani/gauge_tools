@@ -1,0 +1,5 @@
+/build/
+docs/build/doctrees/
+todo/
+_inplace_compile.py
+*.so

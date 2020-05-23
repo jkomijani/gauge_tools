@@ -1,0 +1,58 @@
+Start to thermalize a new ensemble of gauge field configurations with parameters:
+   nx,ny,nz,nt = (8, 8, 8, 8)
+   action = imp, beta = 4.26, u0 = 0.797
+   eps_hit = 0.24
+   n_hits  = 10
+A new cfg is generated and saved; sweep_ind=200 and accept_rate=0.5 (#TIME = 52.6)
+Thermalization concludes.
+Expanding gauge field configurations with parameters:
+(The starting cfg for updating is 'l8x8_b4260_200.npy' [ind=200].)
+   nx,ny,nz,nt = (8, 8, 8, 8)
+   action = imp, beta = 4.26, u0 = 0.797
+   eps_hit = 0.24
+   n_hits  = 10
+A new cfg is generated and saved; sweep_ind=250 and accept_rate=0.52 (#TIME = 13.56)
+A new cfg is generated and saved; sweep_ind=300 and accept_rate=0.51 (#TIME = 13.8)
+A new cfg is generated and saved; sweep_ind=350 and accept_rate=0.51 (#TIME = 13.63)
+Calculating averages of 'axa' and 'ax2a' Wilson loops:
+'axa':0.5400(11), 'ax2a':0.2823(13)	(#TIME = 0.8418)
+ RxT is evaluated for cfg=200 (#TIME = 2.184)
+ RxT is evaluated for cfg=250 (#TIME = 2.411)
+ RxT is evaluated for cfg=300 (#TIME = 2.192)
+ RxT is evaluated for cfg=350 (#TIME = 2.227)
+GaugeFix: Ended at step 271. chi-squared 7.97030396e-01, delta 9.860e-10
+ cfg=200 gauge-fixed and saved (#TIME = 8.885)
+GaugeFix: Ended at step 397. chi-squared 7.96375804e-01, delta 6.165e-10
+ cfg=250 gauge-fixed and saved (#TIME = 12.56)
+GaugeFix: Ended at step 317. chi-squared 7.92859554e-01, delta 8.871e-10
+ cfg=300 gauge-fixed and saved (#TIME = 11.04)
+GaugeFix: Ended at step 259. chi-squared 7.93260165e-01, delta 9.419e-10
+ cfg=350 gauge-fixed and saved (#TIME = 8.541)
+
+>>> calculating quark propagator using conjugate gradient method (n_restart=0)
+CG (parity=0): converges after 65 iterations; residue=7.430269868527912e-13; time = 3.56345272064209
+CG (parity=1): converges after 65 iterations; residue=7.506158848714205e-13; time = 3.3029990196228027
+ cfg=200 quark propagator is calculated and saved for mass=0.5 (#TIME = 7.59)
+
+>>> calculating quark propagator using conjugate gradient method (n_restart=0)
+CG (parity=0): converges after 65 iterations; residue=7.46191100031027e-13; time = 3.4038610458374023
+CG (parity=1): converges after 65 iterations; residue=7.309096393159152e-13; time = 3.300795555114746
+ cfg=250 quark propagator is calculated and saved for mass=0.5 (#TIME = 7.391)
+
+>>> calculating quark propagator using conjugate gradient method (n_restart=0)
+CG (parity=0): converges after 65 iterations; residue=7.146904805502766e-13; time = 3.3878726959228516
+CG (parity=1): converges after 65 iterations; residue=7.37044688167155e-13; time = 3.394710063934326
+ cfg=300 quark propagator is calculated and saved for mass=0.5 (#TIME = 7.467)
+
+>>> calculating quark propagator using conjugate gradient method (n_restart=0)
+CG (parity=0): converges after 65 iterations; residue=8.439453583398704e-13; time = 3.3653008937835693
+CG (parity=1): converges after 65 iterations; residue=8.197700849663795e-13; time = 3.437635660171509
+ cfg=350 quark propagator is calculated and saved for mass=0.5 (#TIME = 7.506)
+ a=0.293201 fm	for cfg=200 (#TIME = 4.989)
+ a=0.285527 fm	for cfg=250 (#TIME = 5.003)
+ a=0.290822 fm	for cfg=300 (#TIME = 4.722)
+ a=0.320356 fm	for cfg=350 (#TIME = 4.43)
+ average: a = 0.2975(67) fm
+Calculating averages of polyakov loops:
+<polyakov-loops>: -0.0028(47)	(#TIME = 0.6412)
+#Total time = 195.37647247314453

@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Examples &#8212; gauge_tools 0.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Main objects" href="gtcore.html" />
+    <link rel="prev" title="Introduction" href="intro.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="examples">
+<span id="id1"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">Examples</span></code><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<dl class="simple">
+<dt>The exercises suggested in the <a class="reference external" href="https://arxiv.org/abs/hep-lat/0506036v1">lecture notes</a> are presented here as primary examples:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="#gauge_tools.examples.generate_ensemble" title="gauge_tools.examples.generate_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.generate_ensemble()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.examples.expand_ensemble" title="gauge_tools.examples.expand_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.expand_ensemble()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.examples.measure_Wilson_loops" title="gauge_tools.examples.measure_Wilson_loops"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.measure_Wilson_loops()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.examples.static_potential" title="gauge_tools.examples.static_potential"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.static_potential()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.examples.ape_smear" title="gauge_tools.examples.ape_smear"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.ape_smear()</span></code></a></p></li>
+</ul>
+</dd>
+<dt>There are more advanced examples too:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="#gauge_tools.examples.Landau_gauge" title="gauge_tools.examples.Landau_gauge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.Landau_gauge()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.examples.staggered_quark_prop" title="gauge_tools.examples.staggered_quark_prop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.staggered_quark_prop()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.examples.avg_quark_prop" title="gauge_tools.examples.avg_quark_prop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.avg_quark_prop()</span></code></a></p></li>
+<li><p><a class="reference internal" href="#gauge_tools.examples.gradient_flow" title="gauge_tools.examples.gradient_flow"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.gradient_flow()</span></code></a>, which also provides a method for scale setting</p></li>
+<li><p><a class="reference internal" href="#gauge_tools.examples.measure_polyakov_loops" title="gauge_tools.examples.measure_polyakov_loops"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.measure_polyakov_loops()</span></code></a> .</p></li>
+</ul>
+</dd>
+</dl>
+<p>By looking at the scripts of these examples one can figure out how to use the package
+for other applications.
+To run the examples, you can simply run the python file in <code class="docutils literal notranslate"><span class="pre">test/run_examples.py</span></code>,
+and compare the output with <code class="docutils literal notranslate"><span class="pre">test/run_examples.log</span></code>.</p>
+<div class="section" id="generate">
+<h2><cite>generate</cite><a class="headerlink" href="#generate" title="Permalink to this headline">¶</a></h2>
+<dl class="py method">
+<dt id="gauge_tools.examples.generate_ensemble">
+<code class="sig-prename descclassname">examples.</code><code class="sig-name descname">generate_ensemble</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_list</span><span class="o">=</span><span class="default_value">[8, 8, 8, 8]</span></em>, <em class="sig-param"><span class="n">beta</span><span class="o">=</span><span class="default_value">5.5</span></em>, <em class="sig-param"><span class="n">action</span><span class="o">=</span><span class="default_value">'W'</span></em>, <em class="sig-param"><span class="n">u0</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">n_therm</span><span class="o">=</span><span class="default_value">200</span></em>, <em class="sig-param"><span class="n">n_cfgs</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">n_skip</span><span class="o">=</span><span class="default_value">50</span></em>, <em class="sig-param"><span class="n">eps_hit</span><span class="o">=</span><span class="default_value">0.24</span></em>, <em class="sig-param"><span class="n">update_u0</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ens_tag</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.examples.generate_ensemble" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function generates a new ensemble of gauge configurations.</p>
+<p>The default values of the parameters correspond to the exercise on page 35 of the <a class="reference external" href="https://arxiv.org/abs/hep-lat/0506036v1">lecture notes</a>.</p>
+<dl>
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">size_list</span></code> ([int]*4):  a list of 4 positive integers specifying the lattice size in <cite>[x,y,z,t]</cite> directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">action</span></code>    (str):      <cite>‘W’</cite> stands for Wilson action and <cite>‘imp’</cite> stand for an improved action.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beta</span></code>      (float):    the lattice beta; with our convension this beta already contains the tadpole improvement factor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">u0</span></code>        (float):    the <cite>u0</cite> used for tadpole improvement (irrelevant for the non-improved action).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_therm</span></code>   (int):      number of sweeps for thermalizing the gauge configurations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_cfgs</span></code>    (int):      number of gauge configurations requested to be generated and saved.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_skip</span></code>    (int):      number of sweeps between two saved configurations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_u0</span></code> (bool):     if <cite>True</cite> updates the value of <cite>u0</cite> in the process of thermalizing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ens_tag</span></code>   (str):      a unique tag (label) describing the ensemble:                                    this tag is used to automatically create a file name for saving (loading) a gauge configuration;                                    <cite>fname = “{}{}.npy”.format(ens_tag, ind_cfg)</cite>, where <cite>ind_cfg</cite> is explained below.</p></li>
+</ul>
+</dd>
+<dt>A note on <cite>ind_cfg</cite>:</dt><dd><p>this index counts the number of all sweeps including the sweeps for thermalization. With the default values        of the parameters of this function we will have <cite>ind_cfg in [100,150,200,250,300]</cite>
+for 5 gauge configurations that are going to be saved. (<cite>ind_cfg</cite> is nothing but <cite>sweep_cntr</cite> in the code.)</p>
+</dd>
+<dt>Usage:</dt><dd><ol class="arabic">
+<li><p>For generating 5 gauge configurations with Wilson action, one can simply use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gauge_tools</span> <span class="k">as</span> <span class="nn">gt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gt</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">generate_ensemble</span><span class="p">(</span><span class="n">n_cfgs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ens_tag</span><span class="o">=</span><span class="s1">&#39;W_&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This generates 5 gauge configurations and saves each of them to a seperate file in the current directory.
+One can of course change default values of the parameters of the function.</p>
+</li>
+<li><p>For generating 5 gauge configurations with the improved action, one can change the parameters to something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gauge_tools</span> <span class="k">as</span> <span class="nn">gt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gt</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">generate_ensemble</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mf">1.719</span><span class="o">/</span><span class="mf">0.797</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="n">u0</span><span class="o">=</span><span class="mf">0.797</span><span class="p">,</span> <span class="n">n_cfgs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ens_tag</span><span class="o">=</span><span class="s1">&#39;imp_&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>One can also let the code dynamically determine the value of <cite>u0</cite>. To this end, for instance one can use</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gauge_tools</span> <span class="k">as</span> <span class="nn">gt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gt</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">generate_ensemble</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mf">1.719</span><span class="o">/</span><span class="mf">0.797</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span> <span class="n">update_u0</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_cfgs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">ens_tag</span><span class="o">=</span><span class="s1">&#39;imp_&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="expand">
+<h2><cite>expand</cite><a class="headerlink" href="#expand" title="Permalink to this headline">¶</a></h2>
+<dl class="py method">
+<dt id="gauge_tools.examples.expand_ensemble">
+<code class="sig-prename descclassname">examples.</code><code class="sig-name descname">expand_ensemble</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_list</span><span class="o">=</span><span class="default_value">[8, 8, 8, 8]</span></em>, <em class="sig-param"><span class="n">beta</span><span class="o">=</span><span class="default_value">5.5</span></em>, <em class="sig-param"><span class="n">action</span><span class="o">=</span><span class="default_value">'W'</span></em>, <em class="sig-param"><span class="n">u0</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">load_ind</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">n_cfgs</span><span class="o">=</span><span class="default_value">15</span></em>, <em class="sig-param"><span class="n">n_skip</span><span class="o">=</span><span class="default_value">50</span></em>, <em class="sig-param"><span class="n">eps_hit</span><span class="o">=</span><span class="default_value">0.24</span></em>, <em class="sig-param"><span class="n">ens_tag</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.examples.expand_ensemble" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function expands an existing ensemble by loading the last (saved) configuration
+and updating it to generate more gauge configurations.</p>
+<dl>
+<dt>Parameters:</dt><dd><p>similar to the parameters of <a class="reference internal" href="#gauge_tools.examples.generate_ensemble" title="gauge_tools.examples.generate_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.generate_ensemble()</span></code></a> except that instead of <cite>n_therm</cite> and <cite>update_u0</cite>
+there is a new parameter called <cite>load_ind</cite> which is the index (<cite>sweep_cntr</cite>) of the gauge configuration
+that should be loaded to start with.</p>
+</dd>
+<dt>Usage:</dt><dd><ol class="arabic">
+<li><p>For generating (and saving) 15 more gauge configurations with Wilson action, one can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gauge_tools</span> <span class="k">as</span> <span class="nn">gt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gt</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">expand_ensemble</span><span class="p">(</span><span class="n">load_ind</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">n_cfgs</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">ens_tag</span><span class="o">=</span><span class="s1">&#39;W_&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where it is assumed that the index (<cite>ind_cfg</cite>) of the last saved configurations is 400.</p>
+</li>
+</ol>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="wilson-loops">
+<h2><cite>Wilson loops</cite><a class="headerlink" href="#wilson-loops" title="Permalink to this headline">¶</a></h2>
+<dl class="py method">
+<dt id="gauge_tools.examples.measure_Wilson_loops">
+<code class="sig-prename descclassname">examples.</code><code class="sig-name descname">measure_Wilson_loops</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_list</span><span class="o">=</span><span class="default_value">[8, 8, 8, 8]</span></em>, <em class="sig-param"><span class="n">cfgs_list</span><span class="o">=</span><span class="default_value">range(200, 1200, 50)</span></em>, <em class="sig-param"><span class="n">binsize</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">ens_tag</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.examples.measure_Wilson_loops" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function computes Monte Carlo averages of <cite>a x a</cite> and <cite>a x 2a</cite> Wilson loops
+exploiting the gauge configurations generated with functions <a class="reference internal" href="#gauge_tools.examples.generate_ensemble" title="gauge_tools.examples.generate_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.generate_ensemble()</span></code></a> and <a class="reference internal" href="#gauge_tools.examples.expand_ensemble" title="gauge_tools.examples.expand_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.expand_ensemble()</span></code></a>.</p>
+<p>This corresponds to the exercise on page 35 of the <a class="reference external" href="https://arxiv.org/abs/hep-lat/0506036v1">lecture notes</a>.
+For the exercise simply use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gauge_tools</span> <span class="k">as</span> <span class="nn">gt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gt</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">measure_Wilson_loops</span><span class="p">(</span><span class="n">cfgs_list</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">1200</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="n">ens_tag</span><span class="o">=</span><span class="s1">&#39;W_&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Calculating</span> <span class="n">averages</span> <span class="n">of</span> <span class="s1">&#39;axa&#39;</span> <span class="ow">and</span> <span class="s1">&#39;ax2a&#39;</span> <span class="n">Wilson</span> <span class="n">loops</span><span class="p">:</span>
+<span class="s1">&#39;axa&#39;</span><span class="p">:</span><span class="mf">0.49774</span><span class="p">(</span><span class="mi">96</span><span class="p">),</span> <span class="s1">&#39;ax2a&#39;</span><span class="p">:</span><span class="mf">0.2606</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">size_list</span></code> ([int]*4):  a list of 4 positive integers specifying the lattice size in <cite>[x,y,z,t]</cite> directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cfgs_list</span></code> (list):     a list of indices of configurations to be loaded and used for the Monte Carlo averages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">binsize</span></code>   (int):      bin size used for estimation of uncertainties.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ens_tag</span></code>   (str):      a unique tag (label) describing the ensemble:                                    for details see the parameters of function <a class="reference internal" href="#gauge_tools.examples.generate_ensemble" title="gauge_tools.examples.generate_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.generate_ensemble()</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="potential">
+<h2><cite>potential</cite><a class="headerlink" href="#potential" title="Permalink to this headline">¶</a></h2>
+<dl class="py method">
+<dt id="gauge_tools.examples.static_potential">
+<code class="sig-prename descclassname">examples.</code><code class="sig-name descname">static_potential</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_list</span><span class="o">=</span><span class="default_value">[8, 8, 8, 8]</span></em>, <em class="sig-param"><span class="n">cfgs_list</span><span class="o">=</span><span class="default_value">range(200, 1200, 50)</span></em>, <em class="sig-param"><span class="n">max_R</span><span class="o">=</span><span class="default_value">4.1</span></em>, <em class="sig-param"><span class="n">max_T</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">ens_tag</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">smear_tag</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">do_smear</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">smearing_dict</span><span class="o">=</span><span class="default_value">{'u0': 0.84}</span></em>, <em class="sig-param"><span class="n">figname</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.examples.static_potential" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function computes the statice potential from Monte Carlo averages of <cite>R times T</cite> Wilson loops
+for different values of <cite>R</cite> and <cite>T</cite>.</p>
+<p>This corresponds to the exercise on page 37 of the <a class="reference external" href="https://arxiv.org/abs/hep-lat/0506036v1">lecture notes</a>.
+Here we smear the links first and then calculate the Wilson loops.
+One can simply disable the smearing by setting the option <cite>do_smear=False</cite>.
+Note that one can first run <a class="reference internal" href="#gauge_tools.examples.ape_smear" title="gauge_tools.examples.ape_smear"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.ape_smear()</span></code></a> to smear the links, save them, and then use them here.
+With a combination of the options <cite>ens_tag</cite> and <cite>smear_tag</cite> one can specify the links to be read,
+and with the option <cite>do_smear</cite> one can request an in-place smearing. In this case, one can control the
+smearing parameters by the <cite>smearing_dict</cite>. The latter one is used by default.
+For the exercise simply use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gauge_tools</span> <span class="k">as</span> <span class="nn">gt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gt</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">static_potential</span><span class="p">(</span><span class="n">cfgs_list</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">1200</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="n">ens_tag</span><span class="o">=</span><span class="s1">&#39;W_&#39;</span><span class="p">,</span> <span class="n">figname</span><span class="o">=</span><span class="s1">&#39;static_W_smear4.pdf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">size_list</span></code>     ([int]*4):  a list of 4 positive integers specifying the lattice size in <cite>[x,y,z,t]</cite> directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cfgs_list</span></code>     (list):     a list of indices of configurations to be loaded for further calculations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ens_tag</span></code>       (str):      a unique tag (label) describing the ensemble:                    for details see the parameters of <a class="reference internal" href="#gauge_tools.examples.generate_ensemble" title="gauge_tools.examples.generate_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.generate_ensemble()</span></code></a>.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">smear_tag</span></code>     (str):      useful if one is going to use the already saved smeared links;                    for details see the parameters of <a class="reference internal" href="#gauge_tools.examples.ape_smear" title="gauge_tools.examples.ape_smear"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.ape_smear()</span></code></a>.</dt><dd><p>Ignore this if the smearing is going to be done in place.</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">do_smear</span></code>      (bool):     For smearing the links before calculating the Wilson loops;                                        the default value is <cite>True</cite>.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">smearing_dict</span></code> (dict)      a dictionary to control the smearing parameters;     </dt><dd><p>for available options see <a class="reference internal" href="#gauge_tools.examples.ape_smear" title="gauge_tools.examples.ape_smear"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.ape_smear()</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_R</span></code>         (float):    calculates the static potential for distances <cite>le max_R</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_T</span></code>         (int):      calculates the static potential for all times <cite>le max_T</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">figname</span></code>       (str):      if not an empyt string, creates a figure and saves it as a pdf in <cite>figname</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="ape-smear">
+<h2><cite>APE smear</cite><a class="headerlink" href="#ape-smear" title="Permalink to this headline">¶</a></h2>
+<dl class="py method">
+<dt id="gauge_tools.examples.ape_smear">
+<code class="sig-prename descclassname">examples.</code><code class="sig-name descname">ape_smear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_list</span><span class="o">=</span><span class="default_value">[8, 8, 8, 8]</span></em>, <em class="sig-param"><span class="n">cfgs_list</span><span class="o">=</span><span class="default_value">range(200, 1200, 50)</span></em>, <em class="sig-param"><span class="n">n_smear</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">eps_smear</span><span class="o">=</span><span class="default_value">1 / 12.0</span></em>, <em class="sig-param"><span class="n">u0</span><span class="o">=</span><span class="default_value">0.84</span></em>, <em class="sig-param"><span class="n">space_only</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">project_SU3</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">ens_tag</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">smear_tag</span><span class="o">=</span><span class="default_value">'smear4_'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.examples.ape_smear" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function loads the gauge configurations generated
+with functions <a class="reference internal" href="#gauge_tools.examples.generate_ensemble" title="gauge_tools.examples.generate_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.generate_ensemble()</span></code></a> and <a class="reference internal" href="#gauge_tools.examples.expand_ensemble" title="gauge_tools.examples.expand_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.expand_ensemble()</span></code></a>,
+smears them and saves them.</p>
+<p>This corresponds to the exercise on page 37 of the <a class="reference external" href="https://arxiv.org/abs/hep-lat/0506036v1">lecture notes</a>.
+For the exercise simply use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">gauge_tools</span> <span class="k">as</span> <span class="nn">gt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gt</span><span class="o">.</span><span class="n">examples</span><span class="o">.</span><span class="n">ape_smear</span><span class="p">(</span><span class="n">cfgs_list</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">1200</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="n">ens_tag</span><span class="o">=</span><span class="s1">&#39;W_&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">size_list</span></code>     ([int]*4):  a list of 4 positive integers specifying the lattice size in <cite>[x,y,z,t]</cite> directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cfgs_list</span></code>     (list):     a list of indices of configurations to be loaded for smearing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_smear</span></code>       (int):      number of smearings.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eps_smear</span></code>     (float):    the <cite>eps</cite> used for smearing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">u0</span></code>            (float):    the <cite>u0</cite> used for tadpole improvement.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ens_tag</span></code>       (str):      a unique tag (label) describing the ensemble:                for details see the parameters of function <a class="reference internal" href="#gauge_tools.examples.generate_ensemble" title="gauge_tools.examples.generate_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.generate_ensemble()</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">smear_tag</span></code>     (str):      a string used to construct a file name for saving a smeared gauge configuration;                                        see below for clarification.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">space_only</span></code>    (bool):     the default value is <cite>True</cite> indicating that the smearing is going to be done only in spatial planes.                                        If set to <cite>False</cite>, the smearing will be performed for termpotal links too,                                        and also includes spatial-temporal planes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">project_SU3</span></code>   (bool):     the default value is <cite>False</cite> indicating that the smeared links are projected to SU(3) in the end.                                        Note that the algorithm used here works only for SU(3) gauges.</p></li>
+</ul>
+</dd>
+<dt>A note on the file names:</dt><dd><dl class="simple">
+<dt>from the parameter <cite>ens_tag</cite> this function constructs two file names:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>to load an existing configuration:</dt><dd><p><cite>fname_load = “{}{}.npy”.format(ens_tag, ind_cfg)</cite>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>to save the smeared configuration:</dt><dd><p><cite>fname_save = “{}{}{}.npy”.format(ens_tag, smear_tag, ind_cfg)</cite>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="landau-gauge">
+<h2><cite>Landau gauge</cite><a class="headerlink" href="#landau-gauge" title="Permalink to this headline">¶</a></h2>
+<dl class="py method">
+<dt id="gauge_tools.examples.Landau_gauge">
+<code class="sig-prename descclassname">examples.</code><code class="sig-name descname">Landau_gauge</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_list</span><span class="o">=</span><span class="default_value">[8, 8, 8, 8]</span></em>, <em class="sig-param"><span class="n">cfgs_list</span><span class="o">=</span><span class="default_value">range(200, 1200, 50)</span></em>, <em class="sig-param"><span class="n">max_itr</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">gaugefix_tol</span><span class="o">=</span><span class="default_value">1e-09</span></em>, <em class="sig-param"><span class="n">fname_output</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">ens_tag</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">gauge_tag</span><span class="o">=</span><span class="default_value">'Landau_'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.examples.Landau_gauge" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function loads the gauge configurations generated
+with functions <a class="reference internal" href="#gauge_tools.examples.generate_ensemble" title="gauge_tools.examples.generate_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.generate_ensemble()</span></code></a> and <a class="reference internal" href="#gauge_tools.examples.expand_ensemble" title="gauge_tools.examples.expand_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.expand_ensemble()</span></code></a>,
+fixes the gauge to the Landau gauge them and saves them.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">size_list</span></code>     ([int]*4):  a list of 4 positive integers specifying the lattice size in <cite>[x,y,z,t]</cite> directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cfgs_list</span></code>     (list):     a list of indices of configurations to be loaded for gauge fixing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_itr</span></code>       (int):      maximum number of iteration in gauge fixing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gaugefix_tol</span></code>  (float):    the tolerance to hault the process of gauge fixing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ens_tag</span></code>       (str):      a unique tag (label) describing the ensemble:                for details see the parameters of function <a class="reference internal" href="#gauge_tools.examples.generate_ensemble" title="gauge_tools.examples.generate_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.generate_ensemble()</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gauge_tag</span></code>     (str):      a string used to construct a file name for saving the gauge-fixed configuration;                                        see below for clarification.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fname_output</span></code>  (string):   if not an empty string, dumps the details of gauge fixing in <cite>fname_output</cite>.</p></li>
+</ul>
+</dd>
+<dt>A note on the file names:</dt><dd><dl class="simple">
+<dt>from the parameter <cite>ens_tag</cite> this function constructs two file names:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>to load an existing configuration:      </dt><dd><p><cite>fname_load = “{}{}.npy”.format(ens_tag, ind_cfg)</cite>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>to save the gauge fixed configuration:</dt><dd><p><cite>fname_save = “{}{}{}.npy”.format(ens_tag, gauge_tag, ind_cfg)</cite>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="quark-propagator">
+<h2><cite>quark propagator</cite><a class="headerlink" href="#quark-propagator" title="Permalink to this headline">¶</a></h2>
+<dl class="py method">
+<dt id="gauge_tools.examples.staggered_quark_prop">
+<code class="sig-prename descclassname">examples.</code><code class="sig-name descname">staggered_quark_prop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_list</span><span class="o">=</span><span class="default_value">[8, 8, 8, 8]</span></em>, <em class="sig-param"><span class="n">cfgs_list</span><span class="o">=</span><span class="default_value">range(200, 1200, 50)</span></em>, <em class="sig-param"><span class="n">src_type</span><span class="o">=</span><span class="default_value">'evenodd_wall'</span></em>, <em class="sig-param"><span class="n">t0</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">color_list</span><span class="o">=</span><span class="default_value">[0]</span></em>, <em class="sig-param"><span class="n">ens_tag</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">gauge_tag</span><span class="o">=</span><span class="default_value">'Landau_'</span></em>, <em class="sig-param"><span class="n">prop_tag</span><span class="o">=</span><span class="default_value">'eoprop_'</span></em>, <em class="sig-param"><span class="n">mass</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">do_smear</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">smearing_dict</span><span class="o">=</span><span class="default_value">{'u0': 0.84}</span></em>, <em class="sig-param"><span class="n">tadpole</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.examples.staggered_quark_prop" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculating the propagator of a staggered quark.
+Here we smear the links before calculating the quark propagator.
+One can simply disable the smearing by setting the option <cite>do_smear=False</cite>.
+The smearing parameters can be changed by manipulating <cite>smearing_dict</cite>.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">size_list</span></code> ([int]*4):  a list of 4 positive integers specifying the lattice size in <cite>[x,y,z,t]</cite> directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cfgs_list</span></code> (list):     a list of indices of configurations to be loaded for further calculations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src_type</span></code>  (str):      a string indicating the source type; the available types are                                    ‘point_src’, ‘corner_wall’, ‘even_wall’, and ‘evenodd_wall’, and ‘evenminusodd_wall’.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t0</span></code>        (int):      the time slice of the source.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color_list</span></code> (list):    the color charge of the source; for now the code only accepts one charge, e.g. [0].</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ens_tag</span></code>   (str):      a unique tag (label) describing the ensemble:                                    for details see the parameters of function <a class="reference internal" href="#gauge_tools.examples.generate_ensemble" title="gauge_tools.examples.generate_ensemble"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.generate_ensemble()</span></code></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gauge_tag</span></code> (str):      a string used to construct a file name for laoding the gauge-fixed configuration;                                    see below for clarification.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prop_tag</span></code>  (str):      a string used to construct a file name for saving the propagators;                                    see below for clarification.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mass</span></code>      (int):      the mass of the quark.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">do_smear</span></code>  (bool):     For smearing the links before calculating the quark propagator;                                    the default value is <cite>True</cite>.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">smearing_dict</span></code> (dict): a dictionary to control the smearing parameters;     </dt><dd><p>for available options see <a class="reference internal" href="#gauge_tools.examples.ape_smear" title="gauge_tools.examples.ape_smear"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.ape_smear()</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tadpole</span></code>   (bool):     if <cite>True</cite>, performs a tadpole improvement on the links befor calculating the propagator;                                    the default value is <cite>False</cite>.</p></li>
+</ul>
+</dd>
+<dt>A note on the file names:</dt><dd><dl class="simple">
+<dt>from the parameter <cite>ens_tag</cite> this function constructs two file names:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>to load an existing configuration:     </dt><dd><p><cite>fname_load = “{}{}{}.npy”.format(ens_tag, gauge_tag, ind_cfg)</cite>.</p>
+</dd>
+</dl>
+</li>
+<li><p>to saved the propagator:                    <cite>fname_save = “{}{}m{}_{}.npy”.format(ens_tag, prop_tag, mass, ind_cfg)</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="avg-quark-prop">
+<h2><cite>avg. quark prop.</cite><a class="headerlink" href="#avg-quark-prop" title="Permalink to this headline">¶</a></h2>
+<dl class="py method">
+<dt id="gauge_tools.examples.avg_quark_prop">
+<code class="sig-prename descclassname">examples.</code><code class="sig-name descname">avg_quark_prop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_list</span><span class="o">=</span><span class="default_value">[8, 8, 8, 8]</span></em>, <em class="sig-param"><span class="n">cfgs_list</span><span class="o">=</span><span class="default_value">range(200, 1200, 50)</span></em>, <em class="sig-param"><span class="n">src_type</span><span class="o">=</span><span class="default_value">'evenodd_wall'</span></em>, <em class="sig-param"><span class="n">t0</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">color_list</span><span class="o">=</span><span class="default_value">[0]</span></em>, <em class="sig-param"><span class="n">ens_tag</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">prop_tag</span><span class="o">=</span><span class="default_value">'eoprop_'</span></em>, <em class="sig-param"><span class="n">mass</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">figname</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.examples.avg_quark_prop" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function loads the propagators calculated in <a class="reference internal" href="#gauge_tools.examples.staggered_quark_prop" title="gauge_tools.examples.staggered_quark_prop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.staggered_quark_prop()</span></code></a>
+and averages them. Most key word arguments are similar to those of <a class="reference internal" href="#gauge_tools.examples.staggered_quark_prop" title="gauge_tools.examples.staggered_quark_prop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.examples.staggered_quark_prop()</span></code></a>,
+except for <code class="docutils literal notranslate"><span class="pre">figname</span></code>, which if not an empyt string, is a signal to create a figure and save it as a pdf in <cite>figname</cite>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="gradient-flow">
+<h2><cite>gradient flow</cite><a class="headerlink" href="#gradient-flow" title="Permalink to this headline">¶</a></h2>
+<dl class="py method">
+<dt id="gauge_tools.examples.gradient_flow">
+<code class="sig-prename descclassname">examples.</code><code class="sig-name descname">gradient_flow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_list</span><span class="o">=</span><span class="default_value">[8, 8, 8, 8]</span></em>, <em class="sig-param"><span class="n">cfgs_list</span><span class="o">=</span><span class="default_value">range(200, 1200, 50)</span></em>, <em class="sig-param"><span class="n">action</span><span class="o">=</span><span class="default_value">'W'</span></em>, <em class="sig-param"><span class="n">max_flowtime</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">eps</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">save_field</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">fname_output</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">ens_tag</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">figname</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.examples.gradient_flow" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function uses the gradient flow method to smear the gauge fields,
+and calculates the lattice spacing. The topological charge is also calculated but not investigated yet.</p>
+<p><strong>*NOTE*</strong> The materials related to the gradeint flow are NOT complete yet.
+This function will probably change in the next versions.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="polyakov-loops">
+<h2><cite>Polyakov loops</cite><a class="headerlink" href="#polyakov-loops" title="Permalink to this headline">¶</a></h2>
+<dl class="py method">
+<dt id="gauge_tools.examples.measure_polyakov_loops">
+<code class="sig-prename descclassname">examples.</code><code class="sig-name descname">measure_polyakov_loops</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">size_list</span><span class="o">=</span><span class="default_value">[8, 8, 8, 8]</span></em>, <em class="sig-param"><span class="n">cfgs_list</span><span class="o">=</span><span class="default_value">range(200, 1200, 50)</span></em>, <em class="sig-param"><span class="n">binsize</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">ens_tag</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.examples.measure_polyakov_loops" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calculate the polyakov loops on the given configurations.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">gauge_tools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Examples</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#generate"><cite>generate</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#expand"><cite>expand</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wilson-loops"><cite>Wilson loops</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#potential"><cite>potential</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ape-smear"><cite>APE smear</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#landau-gauge"><cite>Landau gauge</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quark-propagator"><cite>quark propagator</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#avg-quark-prop"><cite>avg. quark prop.</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gradient-flow"><cite>gradient flow</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#polyakov-loops"><cite>Polyakov loops</cite></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gtcore.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Main</span> <span class="pre">objects</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Libraries</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utilities</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="intro.html" title="previous chapter">Introduction</a></li>
+      <li>Next: <a href="gtcore.html" title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Main</span> <span class="pre">objects</span></code></a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Javad Komijani.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/examples.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

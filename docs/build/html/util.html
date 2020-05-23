@@ -1,0 +1,400 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Utilities &#8212; gauge_tools 0.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Libraries" href="lib.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="utilities">
+<span id="util"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utilities</span></code><a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="smearing">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">smearing</span></code><a class="headerlink" href="#smearing" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="gauge_tools.util.smear.smear">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.util.smear.</code><code class="sig-name descname">smear</code><a class="headerlink" href="#gauge_tools.util.smear.smear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utilities for smearing gauge links. Currently only gradient flow and APE smearing are supported for <code class="docutils literal notranslate"><span class="pre">nc=3</span></code>.</p>
+<dl class="py method">
+<dt id="gauge_tools.util.smear.smear.ape_smear">
+<em class="property">static </em><code class="sig-name descname">ape_smear</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">n_smear</span><span class="o">=</span><span class="default_value">4</span></em>, <em class="sig-param"><span class="n">eps</span><span class="o">=</span><span class="default_value">0.08333333333333333</span></em>, <em class="sig-param"><span class="n">u0</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">space_only</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">project_SU3</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.smear.smear.ape_smear" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs the APE smearing to the links and <strong>*replaces*</strong> the original links with the smeared ones.
+By default, the smearing is done only for spatial links, but there is an option to smear
+the temporal links too. Also by default the smeared links are projected to SU(3), but one can disable it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.util.smear.smear.gradient_flow">
+<em class="property">static </em><code class="sig-name descname">gradient_flow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">calc_staples</span></em>, <em class="sig-param"><span class="n">max_flowtime</span><span class="o">=</span><span class="default_value">1.0</span></em>, <em class="sig-param"><span class="n">eps</span><span class="o">=</span><span class="default_value">0.01</span></em>, <em class="sig-param"><span class="n">fname</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">clover</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">automatic_break</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.smear.smear.gradient_flow" title="Permalink to this definition">¶</a></dt>
+<dd><p>performs the gradient flow to the links and <strong>*replaces*</strong> the original links with the smeared ones.
+We follow Eq. (7) of [<a class="reference external" href="https://arxiv.org/abs/1401.2441">arXiv:1401.2441</a>] and Appenix C of [<a class="reference external" href="https://arxiv.org/abs/1006.4518">arXiv:1006.4518</a>].
+For the improved actions, the tadpole improvement factor can be an issue.
+At least naively, it seems that one should drop the factor because as flow time increases
+the average of plaquettes gets closer to 1. On the other hand it seems that this factor is important
+al least at small flow times. In any case, needs to be investigated.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code>     (numpy.ndarray):    gauge links.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">calc_staples</span></code>:  a method to calculate the staples needed for the gradient flow.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_flowtime</span></code>  (double):   the limit value of flow time.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eps</span></code>           (double):   the flow time steps.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fname</span></code>         (str):      if not an empty string, a file name to dump details.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clover</span></code>        (bool):     for calculating <code class="docutils literal notranslate"><span class="pre">&lt;E&gt;</span></code> (<strong>*Under Investigation*</strong>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">automatic_break</span></code> (bool):   if <cite>True</cite> stops the flow if <code class="docutils literal notranslate"><span class="pre">t^2</span> <span class="pre">&lt;E&gt;</span></code> reaches <cite>1/2</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.util.smear.energy_topocharge_plaq">
+<code class="sig-prename descclassname">smear.</code><code class="sig-name descname">energy_topocharge_plaq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.smear.energy_topocharge_plaq" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns three values for the energy and also the topological charge and the average plaq
+corresponding to the input links <code class="docutils literal notranslate"><span class="pre">U</span></code>.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> (numpy.ndarray): the gauge links</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clover</span></code> (bools):    if <cite>True</cite> uses the average over 4 plaquettes in a plane about                                 every site to calculate <code class="docutils literal notranslate"><span class="pre">E</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>*NOTE:*</strong> at least for a lattice with <code class="docutils literal notranslate"><span class="pre">a~0.25</span></code> fm, the colver form seems not working;
+requires further investigation. <strong>*This function will change in next versions.*</strong></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.util.smear.calc_lattice_spacing">
+<code class="sig-prename descclassname">smear.</code><code class="sig-name descname">calc_lattice_spacing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.smear.calc_lattice_spacing" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a naive determination of the lattice spacing <code class="docutils literal notranslate"><span class="pre">a</span></code> set using the <code class="docutils literal notranslate"><span class="pre">w0</span></code> parameter.
+We use the value of <code class="docutils literal notranslate"><span class="pre">w0</span></code> given in [<a class="reference external" href="https://arxiv.org/abs/1503.02769">arXiv:1503.02769</a>].</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">w0</span></code>    (float): the phaysical value of <code class="docutils literal notranslate"><span class="pre">w0</span></code> parameter in <cite>fm</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">c0</span></code>    (float): the constant corresponding to <code class="docutils literal notranslate"><span class="pre">w0</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">e_def</span></code> (str):   specifies the defintion of <code class="docutils literal notranslate"><span class="pre">&lt;E&gt;</span></code> used for scale setting;                            the default value, ie ‘e_v0’ corresponds to <code class="docutils literal notranslate"><span class="pre">&lt;E&gt;</span></code> from avegage plaquettes.                            Other options are ‘e_v1’ and ‘e_v2’.                            See <a class="reference internal" href="#gauge_tools.util.smear.energy_topocharge_plaq" title="gauge_tools.util.smear.energy_topocharge_plaq"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.util.smear.energy_topocharge_plaq()</span></code></a> to find out the differences.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="gauge-fixing">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">fixing</span></code><a class="headerlink" href="#gauge-fixing" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="gauge_tools.util.gaugefix.gaugefix">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.util.gaugefix.</code><code class="sig-name descname">gaugefix</code><a class="headerlink" href="#gauge_tools.util.gaugefix.gaugefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utilities for gauge fixing.
+Currently only the Landau (Lorenz) and Coulomb gauges are supported for <code class="docutils literal notranslate"><span class="pre">nc=3</span></code>.</p>
+<dl class="py method">
+<dt id="gauge_tools.util.gaugefix.gaugefix.chi2_Landau">
+<code class="sig-name descname">chi2_Landau</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">gaugefix_dir</span><span class="o">=</span><span class="default_value">- 1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.gaugefix.gaugefix.chi2_Landau" title="Permalink to this definition">¶</a></dt>
+<dd><p>is a standalone method to measure the chi-squared that ought to be
+maximized for gauge fixing. Note that this measures contributions from
+links connected to all even sites (equal to those of odd sites).</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> (numpy.ndarray):    the links to be gauge fixed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gaugefix_dir</span></code> (int):   the default value is -1 indicating the Landau gauge.                                        When sets to 0,1,2,3 the gauge fixing condition would be                                        the Coulomb gauge in the corresponding direction.</p></li>
+</ul>
+</dd>
+<dt>Output:</dt><dd><ul class="simple">
+<li><p>chi-squared divided by number of links.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.util.gaugefix.gaugefix.gaugefix_Coulomb">
+<code class="sig-name descname">gaugefix_Coulomb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">gaugefix_dir</span><span class="o">=</span><span class="default_value">3</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.gaugefix.gaugefix.gaugefix_Coulomb" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#gauge_tools.util.gaugefix.gaugefix.gaugefix_Landau" title="gauge_tools.util.gaugefix.gaugefix.gaugefix_Landau"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.util.gaugefix.gaugefix.gaugefix_Landau()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.util.gaugefix.gaugefix.gaugefix_Landau">
+<code class="sig-name descname">gaugefix_Landau</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">gaugefix_dir</span><span class="o">=</span><span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">max_itr</span><span class="o">=</span><span class="default_value">200</span></em>, <em class="sig-param"><span class="n">gaugefix_tol</span><span class="o">=</span><span class="default_value">1e-09</span></em>, <em class="sig-param"><span class="n">fname</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">n_reunit</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">random_overrelax</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">random_overrelax_limits</span><span class="o">=</span><span class="default_value">[1.7, 1.9]</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">sweep_kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.gaugefix.gaugefix.gaugefix_Landau" title="Permalink to this definition">¶</a></dt>
+<dd><p>fixes the gauge of links <code class="docutils literal notranslate"><span class="pre">U</span></code> to the Landau (Lorenz) and Coulomb gauges for <code class="docutils literal notranslate"><span class="pre">nc=3</span></code>,
+and <strong>*replaces*</strong> the original links with the gauge fixed ones.
+The default choice for the gauge is the Landau gauge. For the Coulomb gauge,
+set <code class="docutils literal notranslate"><span class="pre">gaugefix_dir</span></code> to <code class="docutils literal notranslate"><span class="pre">mu</span> <span class="pre">=</span> <span class="pre">0,1,2,3</span></code> depending on the time-like direction.</p>
+<p>For a brief review of gauge fixing see e.g. [<a class="reference external" href="https://arxiv.org/abs/1212.5221v2">arXiv:1212.5221</a>].
+Gauge fixing is a large scale problem, with a SU(3) matrix degree of freedom at each site.
+We divide the SU(3) matrix degrees of freedom into two sets with even/odd parity sites.
+If we set aside one of the sets, the other set can be easily optimized because SU(3) matrix
+degrees of freedom get decoupled.</p>
+<p>We tackle the problem by relaxation method. At each iteration we optimize either of
+even or odd parity sites by calling <a class="reference internal" href="#gauge_tools.util.gaugefix.gaugefix.sweep_Landau" title="gauge_tools.util.gaugefix.gaugefix.sweep_Landau"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.util.gaugefix.gaugefix.sweep_Landau()</span></code></a>,
+and repeat untill the solution converges.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code>     (numpy.ndarray):    the links to be gauge fixed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gaugefix_dir</span></code>    (int):    the default value is -1 indicating the Landau gauge.                                            When sets to 0,1,2,3 the gauge fixing condition would be                                            the Coulomb gauge in corresponding direction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_itr</span></code>         (int):    the maximum number of iterations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gaugefix_tol</span></code> (double):    the criterion to stop the iterations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fname</span></code>        (string):    a file name to dubp the details (if not an empty string).</p></li>
+</ul>
+</dd>
+<dt>Comment:</dt><dd><p>This part is developed following <a class="reference external" href="https://arxiv.org/abs/1212.5221v2">arXiv:1212.5221</a> and <cite>gaugefix2.c</cite> from the <a class="reference external" href="http://physics.utah.edu/~detar/milc.html">MILC code</a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.util.gaugefix.gaugefix.sweep_Landau">
+<code class="sig-name descname">sweep_Landau</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">parity</span></em>, <em class="sig-param"><span class="n">gaugefix_dir</span><span class="o">=</span><span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">n_hits</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">overrelax_w</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.gaugefix.gaugefix.sweep_Landau" title="Permalink to this definition">¶</a></dt>
+<dd><p>carries out one sweep (iteration) of gauge fixing.</p>
+<p>See <a class="reference internal" href="#gauge_tools.util.gaugefix.gaugefix.gaugefix_Landau" title="gauge_tools.util.gaugefix.gaugefix.gaugefix_Landau"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.util.gaugefix.gaugefix.gaugefix_Landau()</span></code></a>
+and <a class="reference internal" href="#gauge_tools.util.gaugefix.local_hit_Landau" title="gauge_tools.util.gaugefix.local_hit_Landau"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.util.gaugefix.local_hit_Landau()</span></code></a> for details.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> (numpy.ndarray):    the links to be sweeped.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parity</span></code> (0 or 1):      the parity of sites to be hitted.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gaugefix_dir</span></code> (int):   the default value is -1 indicating the Landau gauge.                                        When sets to 0,1,2,3 the gauge fixing condition would be                                        the Coulomb gauge in the corresponding direction.</p></li>
+</ul>
+</dd>
+<dt>Output:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">chi2</span></code>: the chi-squared per link of the updated links.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.util.gaugefix.gaugefix.theta_Landau">
+<code class="sig-name descname">theta_Landau</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">gaugefix_dir</span><span class="o">=</span><span class="default_value">- 1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.gaugefix.gaugefix.theta_Landau" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates <code class="docutils literal notranslate"><span class="pre">Tr</span> <span class="pre">\sum_x</span> <span class="pre">gaugeflow(x)</span> <span class="pre">*</span> <span class="pre">gaugeflow(x)^\dagger</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">gaugeflow</span></code> is <a class="reference internal" href="#gauge_tools.util.gaugefix.gaugeflow" title="gauge_tools.util.gaugefix.gaugeflow"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.util.gaugefix.gaugeflow()</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.util.gaugefix.local_hit_Landau">
+<code class="sig-prename descclassname">gaugefix.</code><code class="sig-name descname">local_hit_Landau</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.gaugefix.local_hit_Landau" title="Permalink to this definition">¶</a></dt>
+<dd><p>carries out a local gauge fixing at site xx.</p>
+<p>See <a class="reference internal" href="#gauge_tools.util.gaugefix.gaugefix.gaugefix_Landau" title="gauge_tools.util.gaugefix.gaugefix.gaugefix_Landau"><code class="xref py py-meth docutils literal notranslate"><span class="pre">gauge_tools.util.gaugefix.gaugefix.gaugefix_Landau()</span></code></a> for details of the strategy of gauge fixing.</p>
+<p>This method only updates the links connected to site <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<p>Following Eq. (19) of [arXiv:1212.5221v2], we define <code class="docutils literal notranslate"><span class="pre">K(x)</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> \<span class="n">sum_</span><span class="p">{</span>\<span class="n">mu</span><span class="p">}</span> <span class="p">(</span><span class="n">U_</span>\<span class="n">mu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">U_</span>\<span class="n">mu</span><span class="p">(</span><span class="n">x</span><span class="o">-</span>\<span class="n">hat</span><span class="p">{</span>\<span class="n">mu</span><span class="p">})</span><span class="o">^</span>\<span class="n">dagger</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and project <code class="docutils literal notranslate"><span class="pre">K(x)</span></code> onto SU(3) to obtain <code class="docutils literal notranslate"><span class="pre">g(x)^\dagger</span></code>.
+We call <code class="docutils literal notranslate"><span class="pre">K(x)</span></code> gauge flow of links from site <code class="docutils literal notranslate"><span class="pre">x</span></code>, and <code class="docutils literal notranslate"><span class="pre">K(x)^\dagger</span></code> gauge flow of links to site <code class="docutils literal notranslate"><span class="pre">xx</span></code>.
+It turns out that the imaginary part of <code class="docutils literal notranslate"><span class="pre">K(x)</span></code> has interesting properties:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Delta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">K</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">^</span>\<span class="n">dagger</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> \<span class="n">partial_</span>\<span class="n">mu</span> <span class="n">A_</span>\<span class="n">mu</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">(</span><span class="ow">in</span> <span class="n">the</span> <span class="n">continuum</span> <span class="n">limit</span><span class="p">)</span><span class="o">.</span>
+\<span class="n">sum_x</span> <span class="n">Delta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>  <span class="p">(</span><span class="n">globally</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>In Landaue gauge we aim to maximize the real trace of <code class="docutils literal notranslate"><span class="pre">\sum_{x}</span> <span class="pre">K(x)</span></code> (globally),
+which would be equivalent to vanishing imaginary part of the flow (<code class="docutils literal notranslate"><span class="pre">Delta(x)</span></code>) locally.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code>   (numpy.ndarray):      the links to be gauge fixed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xx</span></code>  ( (int,int,int,int) ): specifying the site for a local hit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gaugefix_dir</span></code>  (int):      the default value is -1 indicating the Landau gauge.                                            When sets to 0,1,2,3 the gauge fixing condition would be                                            the Coulomb gauge in the corresponding direction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_hits</span></code>        (int):      number of hits in SU(3) projection.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">overrelax_w</span></code>   (double):   the overrelaxation coefficient.</p></li>
+</ul>
+</dd>
+<dt>Output:</dt><dd><p>contribution of the current site to the total chi-squared (after local optimization).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.util.gaugefix.gaugeflow">
+<code class="sig-prename descclassname">gaugefix.</code><code class="sig-name descname">gaugeflow</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.gaugefix.gaugeflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Following Eq. (19) of <a class="reference external" href="https://arxiv.org/abs/1212.5221v2">arXiv:1212.5221</a>, we define <code class="docutils literal notranslate"><span class="pre">K(x)</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">K</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> \<span class="n">sum_</span><span class="p">{</span>\<span class="n">mu</span><span class="p">}</span> <span class="p">(</span><span class="n">U_</span>\<span class="n">mu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">U_</span>\<span class="n">mu</span><span class="p">(</span><span class="n">x</span><span class="o">-</span>\<span class="n">hat</span><span class="p">{</span>\<span class="n">mu</span><span class="p">})</span><span class="o">^</span>\<span class="n">dagger</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We call <code class="docutils literal notranslate"><span class="pre">K(x)</span></code> flow of links from site <code class="docutils literal notranslate"><span class="pre">x</span></code>, and <code class="docutils literal notranslate"><span class="pre">K(x)^\dagger</span></code> flow of links to site <code class="docutils literal notranslate"><span class="pre">xx</span></code>.
+It turns out that the imaginary part of <code class="docutils literal notranslate"><span class="pre">K(x)</span></code> has interesting properties:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Delta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">K</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">K</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">^</span>\<span class="n">dagger</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> \<span class="n">partial_</span>\<span class="n">mu</span> <span class="n">A_</span>\<span class="n">mu</span> <span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">continuum</span> <span class="n">limit</span><span class="o">.</span>
+
+\<span class="n">sum_x</span> <span class="n">Delta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>  <span class="p">(</span><span class="n">globally</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>In Landau gauge we aim to maximize the real trace of <code class="docutils literal notranslate"><span class="pre">\sum_{x}</span> <span class="pre">K(x)</span></code> (globally),
+which would be equivalent to vanishing imaginary part of the flow (<code class="docutils literal notranslate"><span class="pre">Delta(x)</span></code>) locally.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code> (numpy.ndarray):    the links to be gauge fixed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xx</span></code> ( (int,…,int) ): specifying the site for a local hit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gaugefix_dir</span></code> (int):   the default value is -1 indicating the Landau gauge.                                        When sets to 0,1,2,3 the gauge fixing condition would be                                        the Coulomb gauge in the corresponding direction.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="quarks">
+<h2><code class="xref py py-mod docutils literal notranslate"><span class="pre">quarks</span></code><a class="headerlink" href="#quarks" title="Permalink to this headline">¶</a></h2>
+<p>This module is not complete yet. Many thigs will change, so the documentation is deliberately poor.</p>
+<dl class="py class">
+<dt id="gauge_tools.util.quark.quark_field">
+<em class="property">class </em><code class="sig-prename descclassname">gauge_tools.util.quark.</code><code class="sig-name descname">quark_field</code><a class="headerlink" href="#gauge_tools.util.quark.quark_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class to define quarks and calculate quark propagators.
+One can use the methods of this class to specify the source type
+and also calculate quark propagators.</p>
+<dl class="py method">
+<dt id="gauge_tools.util.quark.quark_field.calc_propagator">
+<code class="sig-name descname">calc_propagator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">mass</span></em>, <em class="sig-param"><span class="n">n_restart</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">tadpole</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.quark.quark_field.calc_propagator" title="Permalink to this definition">¶</a></dt>
+<dd><p>calculates the quark propagators assuming the source is already defined.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code>      (numpy.ndarray): the gauge links.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mass</span></code>   (float):   the mass of the quark.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_restart</span></code> (int):  number of restarts in calculation of quark                                    propagator (to account for numerical errors).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tadpole</span></code>  (bool):  if set <cite>True</cite>, the links will be tadpole improved.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.util.quark.quark_field.ks_MdM_operator">
+<em class="property">static </em><code class="sig-name descname">ks_MdM_operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">U</span></em>, <em class="sig-param"><span class="n">mass</span></em>, <em class="sig-param"><span class="n">parity</span></em>, <em class="sig-param"><span class="n">u0_sq</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.quark.quark_field.ks_MdM_operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>We follow <cite>Lattice Methods for Quantum Chromodynamics</cite> by Degrand &amp; Detar.
+(See also <cite>mat_invert.c</cite> in <a class="reference external" href="http://physics.utah.edu/~detar/milc.html">MILC code</a>.)</p>
+<p>First, following Eq. (8.66), we define <code class="docutils literal notranslate"><span class="pre">M^\dagger</span> <span class="pre">M</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>              <span class="o">|</span> <span class="n">m</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">D</span> <span class="n">D</span><span class="o">^</span>\<span class="n">dagger</span>         <span class="mi">0</span>          <span class="o">|</span>
+<span class="n">M</span><span class="o">^</span>\<span class="n">dagger</span> <span class="n">M</span> <span class="o">=</span> <span class="o">|</span>                                      <span class="o">|</span>
+              <span class="o">|</span>       <span class="mi">0</span>            <span class="n">m</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">D</span><span class="o">^</span>\<span class="n">dagger</span> <span class="n">D</span> <span class="o">|</span>
+
+              <span class="o">|</span> <span class="n">m</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="n">D_eo</span> <span class="n">D_oe</span>         <span class="mi">0</span>            <span class="o">|</span>
+<span class="n">M</span><span class="o">^</span>\<span class="n">dagger</span> <span class="n">M</span> <span class="o">=</span> <span class="o">|</span>                                      <span class="o">|</span>
+              <span class="o">|</span>       <span class="mi">0</span>            <span class="n">m</span><span class="o">^</span><span class="mi">2</span> <span class="o">-</span> <span class="n">D_oe</span> <span class="n">D_eo</span>   <span class="o">|</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">D_eo</span> <span class="pre">=</span> <span class="pre">D</span> <span class="pre">=</span> <span class="pre">-D_oe^\dagger</span></code>.</p>
+<p>Since <code class="docutils literal notranslate"><span class="pre">M^\dagger</span> <span class="pre">M</span></code> is hermitian positive definite, one could invert the Dirac matrix
+<code class="docutils literal notranslate"><span class="pre">M</span></code> by inverting <code class="docutils literal notranslate"><span class="pre">M^\dagger</span> <span class="pre">M</span></code> and multiplying by <code class="docutils literal notranslate"><span class="pre">M^\dagger</span></code>.
+This is arguably the optimal choice for staggered fermions (de Forcrand, 1996).
+For the linear system <code class="docutils literal notranslate"><span class="pre">Ax</span> <span class="pre">=</span> <span class="pre">b</span></code>, the conjugate gradient algorithm constructs….</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code>      (numpy.ndarray): the gauge links.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mass</span></code>   (float):   the mass of the quark.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parity</span></code> (0 or 1):  the parity.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">u0_sq</span></code>  (float):   one can change it for tadpole improvement.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="gauge_tools.util.quark.quark_field.set_source">
+<code class="sig-name descname">set_source</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src_type</span></em>, <em class="sig-param"><span class="n">t0</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">color_list</span><span class="o">=</span><span class="default_value">[0]</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">src_kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#gauge_tools.util.quark.quark_field.set_source" title="Permalink to this definition">¶</a></dt>
+<dd><p>sets the source. Parameters specify the source.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">gauge_tools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Examples</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="gtcore.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Main</span> <span class="pre">objects</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lib.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Libraries</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Utilities</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#smearing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">smearing</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gauge-fixing"><code class="xref py py-mod docutils literal notranslate"><span class="pre">gauge</span> <span class="pre">fixing</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quarks"><code class="xref py py-mod docutils literal notranslate"><span class="pre">quarks</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="lib.html" title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">Libraries</span></code></a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Javad Komijani.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/util.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
